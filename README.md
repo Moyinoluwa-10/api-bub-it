@@ -118,6 +118,10 @@ yarn run test
 
 ## Usage
 
+### Documentation
+
+- You can use the [documentation](https://documenter.getpostman.com/view/23165359/2s8Z73yWgj)
+
 ### Base URL
 
 - https://api-shortener.vercel.app
