@@ -12,7 +12,7 @@ const sendUrl = async (req, res) => {
   // check base url if valid using the validUrl.isUri method
   if (!validUrl.isUri(baseUrl)) {
     return res.status(401).json({
-      status: true,
+      status: false,
       message: "Invalid base URL",
     });
   }
@@ -24,18 +24,16 @@ const sendUrl = async (req, res) => {
   if (validUrl.isUri(longUrl)) {
     try {
       // before creating the short URL, check if the long URL is in the DB, else we create it.
-
       let url = await urlModel.findOne({
         longUrl,
       });
 
       // url exist and return the respose
       if (url) {
-        res.json(url);
+        res.json({ status: true, message: "ShortURL already created", url });
       } else {
         // join the generated short code the the base url
         const shortUrl = baseUrl + "/" + urlCode;
-
         // invoking the Url model and saving to the DB
         url = new urlModel({
           urlCode,
@@ -43,12 +41,10 @@ const sendUrl = async (req, res) => {
           shortUrl,
           createdAt: new Date(),
         });
-
         await url.save();
-
         res.status(201).json({
           status: true,
-          message: "URL created successfully",
+          message: "ShortURL created successfully",
           url,
         });
       }
