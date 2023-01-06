@@ -27,37 +27,37 @@ const sendUrl = async (req, res) => {
     try {
       // before creating the short URL, check if the long URL is in the DB, else we create it.
 
-      // let url = await urlModel.findOne({
-      //   longUrl,
-      // });
+      let url = await urlModel.findOne({
+        longUrl,
+      });
 
-      // // url exist and return the respose
-      // if (url) {
-      //   res.json(url);
-      // } else {
-      //   // join the generated short code the the base url
-      //   const shortUrl = baseUrl + "/" + urlCode;
+      // url exist and return the respose
+      if (url) {
+        res.json(url);
+      } else {
+        // join the generated short code the the base url
+        const shortUrl = baseUrl + "/" + urlCode;
 
-      //   // invoking the Url model and saving to the DB
-      //   url = new urlModel({
-      //     urlCode,
-      //     longUrl,
-      //     shortUrl,
-      //     createdAt: new Date(),
-      //   });
+        // invoking the Url model and saving to the DB
+        url = new urlModel({
+          urlCode,
+          longUrl,
+          shortUrl,
+          createdAt: new Date(),
+        });
 
-      //   await url.save();
+        await url.save();
 
-      //   res.status(201).json({
-      //     status: true,
-      //     message: "URL created successfully",
-      //     url,
-      //   });
-      // }
+        res.status(201).json({
+          status: true,
+          message: "URL created successfully",
+          url,
+        });
+      }
       const shortUrl = baseUrl + "/" + urlCode;
 
       // invoking the Url model and saving to the DB
-      let url = new urlModel({
+      url = new urlModel({
         urlCode,
         longUrl,
         shortUrl,
