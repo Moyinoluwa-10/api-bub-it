@@ -1,0 +1,31 @@
+{
+  "name": "url_shortener",
+  "version": "1.0.0",
+  "description": "this is a simple url shortener api",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon index.js",
+    "test": "jest --detectOpenHandles"
+  },
+  "jest": {
+    "verbose": true,
+    "testTimeout": 30000
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.1",
+    "mongodb-memory-server": "^8.10.2",
+    "mongoose": "^6.6.0",
+    "shortid": "^2.2.16",
+    "valid-url": "^1.0.9"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1",
+    "nodemon": "^2.0.19",
+    "supertest": "^6.3.3"
+  }
+}
