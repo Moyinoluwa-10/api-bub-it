@@ -9,8 +9,6 @@ const baseUrl = BASE_URL;
 const sendUrl = async (req, res) => {
   const { longUrl } = req.body; // destructure the longUrl from req.body.longUrl
 
-  console.log(longUrl);
-
   // check base url if valid using the validUrl.isUri method
   if (!validUrl.isUri(baseUrl)) {
     return res.status(401).json({
@@ -54,23 +52,6 @@ const sendUrl = async (req, res) => {
           url,
         });
       }
-      const shortUrl = baseUrl + "/" + urlCode;
-
-      // invoking the Url model and saving to the DB
-      url = new urlModel({
-        urlCode,
-        longUrl,
-        shortUrl,
-        createdAt: new Date(),
-      });
-
-      await url.save();
-
-      res.status(201).json({
-        status: true,
-        message: "URL created successfully",
-        url,
-      });
     } catch (err) {
       console.log(err);
       res.status(500).json({ status: false, message: "Server Error" });
