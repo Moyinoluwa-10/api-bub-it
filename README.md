@@ -206,7 +206,7 @@ Distributed under the MIT License. See <a href="https://github.com/moyinoluwa-10
 ## Contact
 
 - Twitter - [@rotii_mii](https://twitter.com/rotii_mii)
-- email - [moyinadelowo@gmail.com](mailto:moyinadelowo@gmail.com)
+- Email - [moyinadelowo@gmail.com](mailto:moyinadelowo@gmail.com)
 
 Project Link: [URL-Shortener](https://github.com/moyinoluwa-10/url-shortener-api)
 
@@ -230,7 +230,7 @@ This project was made possible by:
 [contributors-shield]: https://img.shields.io/github/contributors/moyinoluwa-10/url-shortener-api.svg?style=for-the-badge
 [contributors-url]: https://github.com/moyinoluwa-10/url-shortener-api/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/moyinoluwa-10/url-shortener-api.svg?style=for-the-badge
-[forks-url]: https://github.com/tobisupreme/blogolicious/network/members
+[forks-url]: https://github.com/moyinoluwa-10/url-shortener-api/network/members
 [stars-shield]: https://img.shields.io/github/stars/moyinoluwa-10/url-shortener-api.svg?style=for-the-badge
 [stars-url]: https://github.com/moyinoluwa-10/url-shortener-api/stargazers
 [issues-shield]: https://img.shields.io/github/issues/moyinoluwa-10/url-shortener-api.svg?style=for-the-badge
