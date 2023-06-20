@@ -1,20 +1,36 @@
 require("express-async-errors");
-const express = require("express");
-const cors = require("cors");
 
+// express
+const express = require("express");
 const app = express();
 
-app.use(cors());
+// other packages
+const cors = require("cors");
+const helmet = require("helmet");
+const xss = require("xss-clean");
+const mongoSanitize = require("express-mongo-sanitize");
+const limiter = require("./middlewares/rateLimiter");
+const cookieParser = require("cookie-parser");
 
-app.use(express.json()); //parse incoming request body in JSON format.
-
+// middlewares
+const notFound = require("./middlewares/notFound");
 const errorHandler = require("./middlewares/errorHandler");
-// routes
-const urlRoutes = require("./routes/url.routes");
-const redirect = require("./routes/redirect");
 
-app.use("/api/v1/urls/shorten", urlRoutes);
-app.use("/", redirect);
+// routes
+const authRoutes = require("./routes/auth.routes");
+const userRoutes = require("./routes/user.routes");
+const urlRoutes = require("./routes/url.routes");
+const redirectRoute = require("./routes/redirect.routes");
+
+// middlewares
+app.use(express.json());
+app.use(cookieParser(process.env.JWT_SECRET));
+app.set("trust proxy", 1);
+app.use("api/v1", limiter);
+app.use(cors());
+app.use(helmet());
+app.use(xss());
+app.use(mongoSanitize());
 
 app.get("/", (req, res) => {
   return res.json({
@@ -23,13 +39,14 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("*", (req, res) => {
-  return res.status(404).json({
-    status: false,
-    message: "Route not found",
-  });
-});
+// routes
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/urls", urlRoutes);
+app.use("/api/v1/users", userRoutes);
+app.use("/", redirectRoute);
 
+// other middlewares
+app.use(notFound);
 app.use(errorHandler);
 
 module.exports = app;

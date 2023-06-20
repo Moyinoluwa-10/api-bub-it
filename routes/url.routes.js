@@ -3,6 +3,6 @@ const { sendUrl } = require("../controllers/url.controllers");
 
 const router = express.Router();
 
-router.post("/", sendUrl);
+router.post("/shorten", sendUrl);
 
 module.exports = router;
