@@ -1,3 +1,4 @@
+require("express-async-errors");
 const express = require("express");
 const cors = require("cors");
 
@@ -7,11 +8,12 @@ app.use(cors());
 
 app.use(express.json()); //parse incoming request body in JSON format.
 
+const errorHandler = require("./middlewares/errorHandler");
 // routes
-const url = require("./routes/url");
+const urlRoutes = require("./routes/url.routes");
 const redirect = require("./routes/redirect");
 
-app.use("/api/v0/url/shorten", url);
+app.use("/api/v1/urls/shorten", urlRoutes);
 app.use("/", redirect);
 
 app.get("/", (req, res) => {
@@ -27,5 +29,7 @@ app.get("*", (req, res) => {
     message: "Route not found",
   });
 });
+
+app.use(errorHandler);
 
 module.exports = app;

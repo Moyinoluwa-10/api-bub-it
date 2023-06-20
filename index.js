@@ -1,11 +1,17 @@
 const app = require("./app");
-const { PORT } = require("./config/config");
-const { connectToMongoDB } = require("./database/db");
+const { MONGODB_URI, PORT } = require("./config/config");
+const connectToMongoDB = require("./database/db");
 
-// connect to MongoDB
-connectToMongoDB();
+// start the server
+const start = async () => {
+  try {
+    await connectToMongoDB(MONGODB_URI);
+    app.listen(PORT, () => {
+      console.log(`server is listening on https://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Listening on: https://localhost:${PORT}`);
-});
+start();
