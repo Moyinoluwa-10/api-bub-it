@@ -11,6 +11,7 @@ const URLSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    qrcode: String,
     shortUrl: {
       type: String,
       required: true,
