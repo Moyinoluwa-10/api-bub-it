@@ -21,16 +21,20 @@ const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
 const urlRoutes = require("./routes/url.routes");
 const redirectRoute = require("./routes/redirect.routes");
+const { NODE_ENV } = require("./config/config");
 
 // middlewares
+if (NODE_ENV === "production") {
+  app.set("trust proxy", 1);
+}
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
-app.set("trust proxy", 1);
 app.use("api/v1", limiter);
 app.use(cors());
 app.use(helmet());
 app.use(xss());
 app.use(mongoSanitize());
+app.set("c");
 
 app.get("/", (req, res) => {
   return res.json({

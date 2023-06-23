@@ -32,7 +32,8 @@ const signup = async (req, res) => {
   // });
 
   return res.status(StatusCodes.CREATED).json({
-    msg: "Success! Please check your email to verify account",
+    // msg: "Success! Please check your email to verify account",
+    msg: "Signup successful!",
   });
 };
 
@@ -43,14 +44,14 @@ const login = async (req, res) => {
   }
   const user = await User.findOne({ email });
   if (!user) {
-    throw new UnauthenticatedError("Invalid credentials");
+    throw new BadRequestError("Invalid credentials");
   }
   const isMatch = await user.comparePassword(password);
   if (!isMatch) {
-    throw new UnauthenticatedError("Invalid credentials");
+    throw new BadRequestError("Invalid credentials");
   }
   // if (!user.isVerified) {
-  //   throw new UnauthenticatedError("Please verify your email");
+  //   throw new BadRequestError("Please verify your email");
   // }
 
   const tokenUser = await createTokenUser(user);
@@ -67,7 +68,6 @@ const login = async (req, res) => {
     }
     refreshToken = existingToken.refreshToken;
     attachCookiesToResponse({ res, user: tokenUser, refreshToken });
-    console.log(tokenUser);
     res
       .status(StatusCodes.OK)
       .json({ msg: "User logged in successfully", user: tokenUser });
