@@ -36,7 +36,12 @@ app.use("api/v1", limiter);
 //     credentials: true,
 //   })
 // );
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    credentials: true,
+  })
+);
 app.use(helmet());
 app.use(xss());
 app.use(mongoSanitize());
