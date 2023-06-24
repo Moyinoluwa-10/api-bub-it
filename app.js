@@ -30,11 +30,16 @@ if (NODE_ENV === "production") {
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 app.use("api/v1", limiter);
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "https://bub-it.vercel.app"],
+    credentials: true,
+  })
+);
+// app.use(cors());
 app.use(helmet());
 app.use(xss());
 app.use(mongoSanitize());
-app.set("c");
 
 app.get("/", (req, res) => {
   return res.json({
