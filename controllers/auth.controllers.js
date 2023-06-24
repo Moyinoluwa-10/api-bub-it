@@ -33,6 +33,7 @@ const signup = async (req, res) => {
 
   return res.status(StatusCodes.CREATED).json({
     // msg: "Success! Please check your email to verify account",
+    status: true,
     msg: "Signup successful!",
   });
 };
@@ -83,6 +84,7 @@ const login = async (req, res) => {
 
   attachCookiesToResponse({ res, user, refreshToken });
   return res.status(StatusCodes.OK).json({
+    status: true,
     msg: "User logged in successfully",
     user: tokenUser,
   });

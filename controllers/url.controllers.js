@@ -8,6 +8,7 @@ const { checkPermissions } = require("../utils");
 const urlModel = require("../models/url.model");
 
 const baseUrl = BASE_URL;
+const Cache = require("../cache/redis");
 
 const createUrl = async (req, res) => {
   const { longUrl, custom } = req.body;
@@ -52,7 +53,21 @@ const createUrl = async (req, res) => {
 };
 
 const getAllUrls = async (req, res) => {
+  const cachedUrls = await Cache.redis.get("urls");
+  if (cachedUrls) {
+    console.log("Cache hit");
+    return res.status(200).json({
+      status: true,
+      message: "All shortURLs fetched successfully",
+      urls: JSON.parse(cachedUrls),
+      count: JSON.parse(cachedUrls).length,
+    });
+  }
+  console.log("Cache miss");
+
   const urls = await urlModel.find();
+
+  await Cache.redis.set("urls", JSON.stringify(urls));
   res.status(200).json({
     status: true,
     message: "All shortURLs fetched successfully",
@@ -65,7 +80,7 @@ const getAUrl = async (req, res) => {
   const { id } = req.params;
   const url = await urlModel.findOne({ _id: id });
   if (!url) throw new BadRequestError("ShortURL not found");
-  console.log(url);
+  // console.log(url);
   checkPermissions(req.user, url.user);
   res.status(200).json({
     status: true,
@@ -106,7 +121,7 @@ const redirectUrl = async (req, res) => {
     date: new Date(),
   };
 
-  url.analytics.push(analytics);
+  url.analytics.unshift(analytics);
   url.noOfClicks = url.noOfClicks + 1;
   await url.save();
   res.status(200).json({ status: true, msg: "redirected", url: url.longUrl });
