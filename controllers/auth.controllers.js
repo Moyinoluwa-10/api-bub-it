@@ -69,9 +69,11 @@ const login = async (req, res) => {
     }
     refreshToken = existingToken.refreshToken;
     attachCookiesToResponse({ res, user: tokenUser, refreshToken });
-    res
-      .status(StatusCodes.OK)
-      .json({ msg: "User logged in successfully", user: tokenUser });
+    res.status(StatusCodes.OK).json({
+      status: true,
+      msg: "User logged in successfully",
+      user: tokenUser,
+    });
     return;
   }
 
