@@ -5,6 +5,7 @@ const {
   getAUrl,
   getAllUrls,
   getUserUrls,
+  redirectUrl,
 } = require("../controllers/url.controllers");
 const {
   authenticateUser,
@@ -16,6 +17,7 @@ const router = express.Router();
 router.post("/shorten", authenticateUser, createUrl);
 router.get("/all", authenticateUser, authorizePermissions("admin"), getAllUrls);
 router.get("/user", authenticateUser, getUserUrls);
+router.get("/redirect/:urlCode", redirectUrl);
 
 router.get("/:id", authenticateUser, getAUrl);
 router.delete("/:id", authenticateUser, deleteUrl);

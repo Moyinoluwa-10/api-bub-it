@@ -96,4 +96,27 @@ const getUserUrls = async (req, res) => {
   });
 };
 
-module.exports = { createUrl, getAllUrls, getAUrl, deleteUrl, getUserUrls };
+const redirectUrl = async (req, res) => {
+  const { urlCode } = req.params;
+  const url = await urlModel.findOne({ urlCode });
+  if (!url) throw new BadRequestError("ShortURL not found");
+  const analytics = {
+    ip: req.ip,
+    browser: req.headers["user-agent"],
+    date: new Date(),
+  };
+
+  url.analytics.push(analytics);
+  url.noOfClicks = url.noOfClicks + 1;
+  await url.save();
+  res.status(200).json({ status: true, msg: "redirected", url: url.longUrl });
+};
+
+module.exports = {
+  createUrl,
+  getAllUrls,
+  getAUrl,
+  deleteUrl,
+  getUserUrls,
+  redirectUrl,
+};
