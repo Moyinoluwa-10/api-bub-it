@@ -38,13 +38,14 @@ app.use("api/v1", limiter);
 // );
 app.use(
   cors({
-    origin: "https://bub-it.vercel.app",
+    origin: ["https://bub-it.vercel.app", "http://localhost:5173"],
     credentials: true,
   })
 );
 app.use(helmet());
 app.use(xss());
 app.use(mongoSanitize());
+app.use(express.static("./public"));
 
 app.get("/", (req, res) => {
   return res.json({

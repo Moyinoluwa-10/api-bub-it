@@ -1,0 +1,383 @@
+{
+	"info": {
+		"_postman_id": "74e72fdd-842a-4c8b-b72c-45347d417a88",
+		"name": "Bub-it",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27077924"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"password\": \"qwerty\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-bub-it.vercel.app/api/v1/auth/signup",
+							"host": [
+								"https://api-bub-it.vercel.app/api/v1"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"password\": \"qwerty\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-bub-it.vercel.app/api/v1/auth/login",
+							"host": [
+								"https://api-bub-it.vercel.app/api/v1"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://api-bub-it.vercel.app/api/v1/auth/logout",
+							"host": [
+								"https://api-bub-it.vercel.app/api/v1"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"victoralayande4@gmail.com\",\r\n    \"verificationToken\": \"40522a71156d34aa788a765f06fc8643091696c8fd0579dff42eed0ab16e081399c701eab2b4d1721046f44a8b256c0d0b7484be8c997b1d176a3f5f24bece808b3e0be0a2ca\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-bub-it.vercel.app/api/v1/auth/verify-email",
+							"host": [
+								"https://api-bub-it.vercel.app/api/v1"
+							],
+							"path": [
+								"auth",
+								"verify-email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"password\": \"secret\",\r\n    \"token\": 69809}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-bub-it.vercel.app/api/v1/auth/reset-password",
+							"host": [
+								"https://api-bub-it.vercel.app/api/v1"
+							],
+							"path": [
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"victoralayande4@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-bub-it.vercel.app/api/v1/auth/forgot-password",
+							"host": [
+								"https://api-bub-it.vercel.app/api/v1"
+							],
+							"path": [
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api-bub-it.vercel.app/api/v1/users/",
+							"host": [
+								"https://api-bub-it.vercel.app/api/v1"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api-bub-it.vercel.app/api/v1/users/648d5a76ffccc47e1b82026d",
+							"host": [
+								"https://api-bub-it.vercel.app/api/v1"
+							],
+							"path": [
+								"users",
+								"648d5a76ffccc47e1b82026d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Current User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api-bub-it.vercel.app/api/v1/users/showMe",
+							"host": [
+								"https://api-bub-it.vercel.app/api/v1"
+							],
+							"path": [
+								"users",
+								"showMe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"qwrg\",\r\n    \"lastName\": \"acc\",\r\n    \"email\": \"xyz@gmail.com\",\r\n    \"phoneNumber\": \"1232131212\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-bub-it.vercel.app/api/v1/users/updateUser",
+							"host": [
+								"https://api-bub-it.vercel.app/api/v1"
+							],
+							"path": [
+								"users",
+								"updateUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\": \"qwerty\",\r\n    \"newPassword\": \"secret\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-bub-it.vercel.app/api/v1/users/updateUserPassword",
+							"host": [
+								"https://api-bub-it.vercel.app/api/v1"
+							],
+							"path": [
+								"users",
+								"updateUserPassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "URL",
+			"item": [
+				{
+					"name": "Get all URLs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api-bub-it.vercel.app/api/v1/urls/all",
+							"host": [
+								"https://api-bub-it.vercel.app/api/v1"
+							],
+							"path": [
+								"urls",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single URL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api-bub-it.vercel.app/api/v1/urls/6491edd4f3a229034dd2dc35",
+							"host": [
+								"https://api-bub-it.vercel.app/api/v1"
+							],
+							"path": [
+								"urls",
+								"6491edd4f3a229034dd2dc35"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Redirect URL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api-bub-it.vercel.app/api/v1/urls/6491edd4f3a229034dd2dc35",
+							"host": [
+								"https://api-bub-it.vercel.app/api/v1"
+							],
+							"path": [
+								"urls",
+								"6491edd4f3a229034dd2dc35"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a User URL",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Create URL",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"longUrl\":\"https://etyhjh\",\r\n    \"custom\": \"asd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-bub-it.vercel.app/api/v1/urls/shorten",
+							"host": [
+								"https://api-bub-it.vercel.app/api/v1"
+							],
+							"path": [
+								"urls",
+								"shorten"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Url",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

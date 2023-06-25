@@ -1,19 +1,20 @@
 const app = require("../app");
 const supertest = require("supertest");
-const api = supertest(app);
 
 describe("Home Route", () => {
-  it("Should return status true and a message", async () => {
-    const response = await api.get("/").set("content-type", "application/json");
+  it("should return status true and a message", async () => {
+    const response = await supertest(app)
+      .get("/")
+      .set("content-type", "application/json");
     expect(response.status).toBe(200);
     expect(response.body).toEqual({
+      message: "Welcome to your Blog",
       status: true,
-      message: "Welcome to shortener",
     });
   });
 
-  it("Should return error when routed to undefined route", async () => {
-    const response = await api
+  it("should return error when routed to undefined route", async () => {
+    const response = await supertest(app)
       .get("/undefined/undefined")
       .set("content-type", "application/json");
     expect(response.status).toBe(404);
