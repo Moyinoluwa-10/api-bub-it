@@ -170,10 +170,14 @@ const logout = async (req, res) => {
   res.cookie("accessToken", "logout", {
     httpOnly: true,
     expires: new Date(Date.now()),
+    secure: true,
+    sameSite: "none",
   });
   res.cookie("refreshToken", "logout", {
     httpOnly: true,
     expires: new Date(Date.now()),
+    secure: true,
+    sameSite: "none",
   });
 
   return res.status(StatusCodes.OK).json({

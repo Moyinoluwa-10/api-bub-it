@@ -2,15 +2,14 @@ const app = require("../app");
 const supertest = require("supertest");
 
 describe("Home Route", () => {
-  it("should return status true and a message", async () => {
+  it("should return status an html file", async () => {
     const response = await supertest(app)
       .get("/")
-      .set("content-type", "application/json");
+      .set("content-type", "text/html");
+    console.log(response);
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({
-      message: "Welcome to your Blog",
-      status: true,
-    });
+    expect(response.headers["content-type"]).toBe("text/html; charset=UTF-8");
+    expect(response.body).toEqual({});
   });
 
   it("should return error when routed to undefined route", async () => {
@@ -19,8 +18,7 @@ describe("Home Route", () => {
       .set("content-type", "application/json");
     expect(response.status).toBe(404);
     expect(response.body).toEqual({
-      status: false,
-      message: "Route not found",
+      msg: "Route does not exist",
     });
   });
 });
