@@ -39,6 +39,7 @@ const signup = async (req, res) => {
 };
 
 const login = async (req, res) => {
+  console.log("Login hit");
   const { email, password } = req.body;
   if (!email || !password) {
     throw new BadRequestError("Please provide email and password");
@@ -69,6 +70,7 @@ const login = async (req, res) => {
     }
     refreshToken = existingToken.refreshToken;
     attachCookiesToResponse({ res, user: tokenUser, refreshToken });
+    console.log(req.signedCookies);
     res.status(StatusCodes.OK).json({
       status: true,
       msg: "User logged in successfully",
@@ -78,13 +80,14 @@ const login = async (req, res) => {
   }
 
   refreshToken = crypto.randomBytes(40).toString("hex");
-  const userAgent = req.headers["user-agent"];
+  const userAgent = req.headers["user-agent"] | "hello";
   const ip = req.ip;
   const userToken = { refreshToken, ip, userAgent, user: user._id };
 
   await Token.create(userToken);
 
   attachCookiesToResponse({ res, user, refreshToken });
+  console.log(req.signedCookies);
   return res.status(StatusCodes.OK).json({
     status: true,
     msg: "User logged in successfully",

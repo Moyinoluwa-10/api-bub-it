@@ -18,7 +18,7 @@ const attachCookiesToResponse = ({ res, user, refreshToken }) => {
   res.cookie("accessToken", accessTokenJWT, {
     httpOnly: true,
     secure: true,
-    signed: true,
+    // signed: true,
     expires: new Date(Date.now() + oneDay),
     sameSite: "none",
   });
@@ -26,7 +26,7 @@ const attachCookiesToResponse = ({ res, user, refreshToken }) => {
   res.cookie("refreshToken", refreshTokenJWT, {
     httpOnly: true,
     secure: true,
-    signed: true,
+    // signed: true,
     expires: new Date(Date.now() + longerExp),
     sameSite: "none",
   });

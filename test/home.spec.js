@@ -6,7 +6,6 @@ describe("Home Route", () => {
     const response = await supertest(app)
       .get("/")
       .set("content-type", "text/html");
-    console.log(response);
     expect(response.status).toBe(200);
     expect(response.headers["content-type"]).toBe("text/html; charset=UTF-8");
     expect(response.body).toEqual({});
