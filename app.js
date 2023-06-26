@@ -38,7 +38,11 @@ app.use("api/v1", limiter);
 // );
 app.use(
   cors({
-    origin: ["https://bub-it.vercel.app", "http://localhost:5173"],
+    origin: [
+      "https://bub-it.vercel.app",
+      "http://localhost:5173",
+      "https://vercel.com",
+    ],
     credentials: true,
   })
 );
