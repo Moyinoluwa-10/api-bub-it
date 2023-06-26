@@ -11,6 +11,7 @@ const xss = require("xss-clean");
 const mongoSanitize = require("express-mongo-sanitize");
 const limiter = require("./middlewares/rateLimiter");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 
 // middlewares
 const notFound = require("./middlewares/notFound");
@@ -38,31 +39,28 @@ app.use("api/v1", limiter);
 // );
 app.use(
   cors({
-    origin: [
-      "https://bub-it.vercel.app",
-      "http://localhost:5173",
-      "https://bub.icu",
-    ],
+    origin: ["https://bub.icu", "http://localhost:5173"],
     credentials: true,
   })
 );
 app.use(helmet());
 app.use(xss());
 app.use(mongoSanitize());
-app.use(express.static("./public"));
+// app.use(express.static("./public"));
+app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/", (req, res) => {
-  return res.json({
-    status: true,
-    message: "Welcome to shortener",
-  });
-});
+// app.get("/", (req, res) => {
+//   return res.json({
+//     status: true,
+//     message: "Welcome to shortener",
+//   });
+// });
 
 // routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/urls", urlRoutes);
 app.use("/api/v1/users", userRoutes);
-app.use("/", redirectRoute);
+// app.use("/", redirectRoute);
 
 // other middlewares
 app.use(notFound);
