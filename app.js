@@ -39,7 +39,7 @@ app.use("api/v1", limiter);
 // );
 app.use(
   cors({
-    origin: ["https://bub.icu", "http://localhost:5173"],
+    origin: ["https://www.bub.icu", "http://localhost:5173"],
     credentials: true,
   })
 );
