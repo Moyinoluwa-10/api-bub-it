@@ -41,7 +41,7 @@ app.use(
     origin: [
       "https://bub-it.vercel.app",
       "http://localhost:5173",
-      "https://vercel.com",
+      "https://bub.icu",
     ],
     credentials: true,
   })
