@@ -20,41 +20,38 @@ const signup = async (req, res) => {
   }
   const verificationToken = crypto.randomBytes(70).toString("hex");
   req.body.verificationToken = verificationToken;
-  const origin = ORIGIN;
+  const origin = req.headers.origin;
 
   const user = await User.create(req.body);
 
-  // await sendVerificationEmail({
-  //   name: user.firstName,
-  //   email: user.email,
-  //   token: verificationToken,
-  //   origin,
-  // });
+  await sendVerificationEmail({
+    name: user.firstName,
+    email: user.email,
+    token: verificationToken,
+    origin,
+  });
 
   return res.status(StatusCodes.CREATED).json({
-    // msg: "Success! Please check your email to verify account",
-    status: true,
-    msg: "Signup successful!",
+    msg: "Success! Please check your email to verify account",
   });
 };
 
 const login = async (req, res) => {
-  console.log("Login hit");
   const { email, password } = req.body;
   if (!email || !password) {
     throw new BadRequestError("Please provide email and password");
   }
   const user = await User.findOne({ email });
   if (!user) {
-    throw new BadRequestError("Invalid credentials");
+    throw new BadRequestError("Incorrect email or password");
   }
   const isMatch = await user.comparePassword(password);
   if (!isMatch) {
-    throw new BadRequestError("Invalid credentials");
+    throw new BadRequestError("Incorrect email or password");
   }
-  // if (!user.isVerified) {
-  //   throw new BadRequestError("Please verify your email");
-  // }
+  if (!user.isVerified) {
+    throw new BadRequestError("Please verify your email");
+  }
 
   const tokenUser = await createTokenUser(user);
 
@@ -70,9 +67,7 @@ const login = async (req, res) => {
     }
     refreshToken = existingToken.refreshToken;
     attachCookiesToResponse({ res, user: tokenUser, refreshToken });
-    console.log(req.signedCookies);
     res.status(StatusCodes.OK).json({
-      status: true,
       msg: "User logged in successfully",
       user: tokenUser,
     });
@@ -87,9 +82,7 @@ const login = async (req, res) => {
   await Token.create(userToken);
 
   attachCookiesToResponse({ res, user, refreshToken });
-  console.log(req.signedCookies);
   return res.status(StatusCodes.OK).json({
-    status: true,
     msg: "User logged in successfully",
     user: tokenUser,
   });
@@ -101,6 +94,12 @@ const verifyEmail = async (req, res) => {
   if (!user) {
     throw new UnauthenticatedError("Verification Failed");
   }
+  if (user.isVerified) {
+    return res.status(StatusCodes.OK).json({
+      msg: "Email verified successfully",
+    });
+  }
+
   if (user.verificationToken !== verificationToken) {
     throw new UnauthenticatedError("Verification Failed");
   }

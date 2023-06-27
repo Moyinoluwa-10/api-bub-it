@@ -19,6 +19,8 @@ const createUrl = async (req, res) => {
 
   if (!validUrl.isUri(longUrl)) throw new BadRequestError("Invalid long URL");
 
+  console.log(req.user);
+
   let url = await urlModel.findOne({
     longUrl,
     user: req.user.userId,
@@ -81,6 +83,8 @@ const getAUrl = async (req, res) => {
   const url = await urlModel.findOne({ _id: id });
   if (!url) throw new BadRequestError("ShortURL not found");
   // console.log(url);
+  console.log(req.user, url.user);
+  console.log(url);
   checkPermissions(req.user, url.user);
   res.status(200).json({
     status: true,

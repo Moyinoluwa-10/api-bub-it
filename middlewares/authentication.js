@@ -27,7 +27,6 @@ const authenticateUser = async (req, res, next) => {
       user: payload.user,
       refreshToken: existingToken.refreshToken,
     });
-    // console.log(req.signedCookies);
 
     req.user = payload.user;
     next();

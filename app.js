@@ -31,12 +31,6 @@ if (NODE_ENV === "production") {
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 app.use("api/v1", limiter);
-// app.use(
-//   cors({
-//     origin: ["http://localhost:5173", "https://bub-it.vercel.app"],
-//     credentials: true,
-//   })
-// );
 app.use(
   cors({
     origin: [

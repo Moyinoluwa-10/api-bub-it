@@ -5,7 +5,7 @@ const { SENDGRID_API_KEY, NODE_ENV } = require("../config/config");
 
 let sendMail;
 
-if (NODE_ENV === "test") {
+if (NODE_ENV === "development") {
   sendMail = async (mail) => {
     const transporter = nodemailer.createTransport(nodemailerConfig);
     return transporter.sendMail(mail);
