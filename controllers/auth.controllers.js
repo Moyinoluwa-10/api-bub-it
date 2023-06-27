@@ -81,7 +81,7 @@ const login = async (req, res) => {
 
   await Token.create(userToken);
 
-  attachCookiesToResponse({ res, user, refreshToken });
+  attachCookiesToResponse({ res, user: tokenUser, refreshToken });
   return res.status(StatusCodes.OK).json({
     msg: "User logged in successfully",
     user: tokenUser,
@@ -120,18 +120,18 @@ const forgotPassword = async (req, res) => {
   }
   const user = await User.findOne({ email });
   if (user) {
-    const verificationCode = crypto.randomInt(99999);
-    const origin = ORIGIN;
+    const verificationToken = crypto.randomBytes(70).toString("hex");
+    const origin = req.headers.origin;
     await sendResetPasswordEmail({
       name: user.firstName,
       email: user.email,
-      token: verificationCode,
+      token: verificationToken,
       origin,
     });
 
     const tenMinutes = 1000 * 60 * 10;
     const passwordTokenExpirationDate = new Date(Date.now() + tenMinutes);
-    user.passwordToken = createHash(verificationCode.toString());
+    user.passwordToken = createHash(verificationToken.toString());
     user.passwordTokenExpirationDate = passwordTokenExpirationDate;
     await user.save();
   }

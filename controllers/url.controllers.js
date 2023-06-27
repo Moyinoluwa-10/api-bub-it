@@ -82,9 +82,6 @@ const getAUrl = async (req, res) => {
   const { id } = req.params;
   const url = await urlModel.findOne({ _id: id });
   if (!url) throw new BadRequestError("ShortURL not found");
-  // console.log(url);
-  console.log(req.user, url.user);
-  console.log(url);
   checkPermissions(req.user, url.user);
   res.status(200).json({
     status: true,
