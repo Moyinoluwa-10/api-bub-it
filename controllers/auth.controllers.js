@@ -90,6 +90,7 @@ const login = async (req, res) => {
 
 const verifyEmail = async (req, res) => {
   const { email, verificationToken } = req.body;
+  console.log(email, verificationToken);
   const user = await User.findOne({ email });
   if (!user) {
     throw new UnauthenticatedError("Verification Failed");

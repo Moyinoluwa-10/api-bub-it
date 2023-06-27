@@ -26,8 +26,7 @@ const createUrl = async (req, res) => {
     user: req.user.userId,
   });
 
-  if (url)
-    return res.json({ status: true, message: "ShortURL already created", url });
+  if (url) return res.json({ msg: "ShortURL already created", url });
   let customUrl = null;
 
   const qrcode = await QRCode.toDataURL(longUrl);
@@ -48,31 +47,28 @@ const createUrl = async (req, res) => {
   });
   await url.save();
   res.status(201).json({
-    status: true,
-    message: "ShortURL created successfully",
+    msg: "ShortURL created successfully",
     url,
   });
 };
 
 const getAllUrls = async (req, res) => {
-  const cachedUrls = await Cache.redis.get("urls");
-  if (cachedUrls) {
-    console.log("Cache hit");
-    return res.status(200).json({
-      status: true,
-      message: "All shortURLs fetched successfully",
-      urls: JSON.parse(cachedUrls),
-      count: JSON.parse(cachedUrls).length,
-    });
-  }
-  console.log("Cache miss");
+  // const cachedUrls = await Cache.redis.get("urls");
+  // if (cachedUrls) {
+  //   console.log("Cache hit");
+  //   return res.status(200).json({
+  //     msg: "All shortURLs fetched successfully",
+  //     urls: JSON.parse(cachedUrls),
+  //     count: JSON.parse(cachedUrls).length,
+  //   });
+  // }
+  // console.log("Cache miss");
 
   const urls = await urlModel.find();
 
-  await Cache.redis.set("urls", JSON.stringify(urls));
+  // await Cache.redis.set("urls", JSON.stringify(urls));
   res.status(200).json({
-    status: true,
-    message: "All shortURLs fetched successfully",
+    msg: "All shortURLs fetched successfully",
     urls,
     count: urls.length,
   });
@@ -84,8 +80,7 @@ const getAUrl = async (req, res) => {
   if (!url) throw new BadRequestError("ShortURL not found");
   checkPermissions(req.user, url.user);
   res.status(200).json({
-    status: true,
-    message: "ShortURL fetched successfully",
+    msg: "ShortURL fetched successfully",
     url,
   });
 };
@@ -97,16 +92,14 @@ const deleteUrl = async (req, res) => {
   checkPermissions(req.user, url.user);
   await url.remove();
   res.status(200).json({
-    status: true,
-    message: "ShortURL deleted successfully",
+    msg: "ShortURL deleted successfully",
   });
 };
 
 const getUserUrls = async (req, res) => {
   const urls = await urlModel.find({ user: req.user.userId });
   res.status(200).json({
-    status: true,
-    message: "All shortURLs fetched successfully",
+    msg: "All shortURLs fetched successfully",
     urls,
     count: urls.length,
   });
@@ -125,7 +118,7 @@ const redirectUrl = async (req, res) => {
   url.analytics.unshift(analytics);
   url.noOfClicks = url.noOfClicks + 1;
   await url.save();
-  res.status(200).json({ status: true, msg: "redirected", url: url.longUrl });
+  res.status(200).json({ msg: "redirected", url: url.longUrl });
 };
 
 module.exports = {

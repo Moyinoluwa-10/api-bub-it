@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"password\": \"qwerty\"\r\n}",
+							"raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"password\": \"secret\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -24,17 +24,132 @@
 							}
 						},
 						"url": {
-							"raw": "https://api-bub-it.vercel.app/api/v1/auth/signup",
+							"raw": "https://api.bub.icu/api/v1/auth/signup",
 							"host": [
-								"https://api-bub-it.vercel.app/api/v1"
+								"https://api.bub.icu/api/v1"
 							],
 							"path": [
 								"auth",
 								"signup"
 							]
-						}
+						},
+						"description": "Route to register a user"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Register User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"password\": \"secret\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.bub.icu/api/v1/auth/signup",
+									"host": [
+										"https://api.bub.icu/api/v1"
+									],
+									"path": [
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3c-LUYUmY/Fw/IDP3uAepKcrTt7z0U\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Jun 2023 08:15:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"Success! Please check your email to verify account\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Login User",
@@ -43,7 +158,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"password\": \"qwerty\"\r\n}",
+							"raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -51,17 +166,140 @@
 							}
 						},
 						"url": {
-							"raw": "https://api-bub-it.vercel.app/api/v1/auth/login",
+							"raw": "https://api.bub.icu/api/v1/auth/login",
 							"host": [
-								"https://api-bub-it.vercel.app/api/v1"
+								"https://api.bub.icu/api/v1"
 							],
 							"path": [
 								"auth",
 								"login"
 							]
-						}
+						},
+						"description": "Route to login a user  \nNB: A user has to have verified his/her email to be able to login"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Login User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"password\": \"secret\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.bub.icu/api/v1/auth/login",
+									"host": [
+										"https://api.bub.icu/api/v1"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "accessToken=s%3AeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6IjY0OWE5YTliNmJjYzc0ZWNmYzMxNGRkMyIsInJvbGUiOiJ1c2VyIn0sImlhdCI6MTY4Nzg1NDEyNX0.exhrMaesJBvIxwzc2jVA-m6w98xJOnpvxu-nMEpgyV8.AaVAKpe3dW%2BGNHQFKsmMlsDAYnki3lhZ62k9sF2eAio; Path=/; Expires=Wed, 28 Jun 2023 08:22:05 GMT; HttpOnly; Secure"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "refreshToken=s%3AeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6IjY0OWE5YTliNmJjYzc0ZWNmYzMxNGRkMyIsInJvbGUiOiJ1c2VyIn0sInJlZnJlc2hUb2tlbiI6ImI4NDY1ZTM1ZWE0MjYwMWI3OWJjNWFhZDM1MzJjOTM1NjBmYTY1YjMyYWE1NTg0YzVkOTliZTJjMzA4ZDEzNGE3OGVkMGEwOTQ5NjE1MTg2IiwiaWF0IjoxNjg3ODU0MTI1fQ.6Yfp8GsssVOhhzNy2OmsHI32YJ0o508rtSR6jTK6Das.YQinUaAKglF31Hhl%2F1t5hl6SGpFK%2BGbgJ95SGrjLNqQ; Path=/; Expires=Thu, 27 Jul 2023 08:22:05 GMT; HttpOnly; Secure"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "96"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"60-WmSycltZdiCoqLiPGZNK4LGuuN8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Jun 2023 08:22:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"User logged in successfully\",\n    \"user\": {\n        \"userId\": \"649a9a9b6bcc74ecfc314dd3\",\n        \"role\": \"user\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Logout User",
@@ -69,17 +307,131 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://api-bub-it.vercel.app/api/v1/auth/logout",
+							"raw": "https://api.bub.icu/api/v1/auth/logout",
 							"host": [
-								"https://api-bub-it.vercel.app/api/v1"
+								"https://api.bub.icu/api/v1"
 							],
 							"path": [
 								"auth",
 								"logout"
 							]
-						}
+						},
+						"description": "Route to logout a user.  \nDuring logout, the cookies are deleted"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Logout User",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://api.bub.icu/api/v1/auth/logout",
+									"host": [
+										"https://api.bub.icu/api/v1"
+									],
+									"path": [
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "accessToken=logout; Path=/; Expires=Tue, 27 Jun 2023 08:24:54 GMT; HttpOnly; Secure; SameSite=None"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "refreshToken=logout; Path=/; Expires=Tue, 27 Jun 2023 08:24:54 GMT; HttpOnly; Secure; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-+cMwq1GMXHyVYBn0vQva5gYXy+M\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Jun 2023 08:24:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"User logged out successfully\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Verify Email",
@@ -88,7 +440,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"victoralayande4@gmail.com\",\r\n    \"verificationToken\": \"40522a71156d34aa788a765f06fc8643091696c8fd0579dff42eed0ab16e081399c701eab2b4d1721046f44a8b256c0d0b7484be8c997b1d176a3f5f24bece808b3e0be0a2ca\"\r\n}",
+							"raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"verificationToken\": \"166c4b96deeef79921b80f9e075a2d79cf6328a0bddd98171f36154154914cbc2a89d0507c3a8fb474c0d9f002d23aa5b0978402089bc20f6b34d17a8049a57d9728bddeb07c\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -96,17 +448,132 @@
 							}
 						},
 						"url": {
-							"raw": "https://api-bub-it.vercel.app/api/v1/auth/verify-email",
+							"raw": "https://api.bub.icu/api/v1/auth/verify-email",
 							"host": [
-								"https://api-bub-it.vercel.app/api/v1"
+								"https://api.bub.icu/api/v1"
 							],
 							"path": [
 								"auth",
 								"verify-email"
 							]
-						}
+						},
+						"description": "Route to verify a user's email"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Verify Email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"verificationToken\": \"166c4b96deeef79921b80f9e075a2d79cf6328a0bddd98171f36154154914cbc2a89d0507c3a8fb474c0d9f002d23aa5b0978402089bc20f6b34d17a8049a57d9728bddeb07c\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.bub.icu/api/v1/auth/verify-email",
+									"host": [
+										"https://api.bub.icu/api/v1"
+									],
+									"path": [
+										"auth",
+										"verify-email"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25-3UCzLqEFcHC3AccCt8WKvlGdX1I\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Jun 2023 08:21:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"Email verified successfully\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Reset Password",
@@ -115,7 +582,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"password\": \"secret\",\r\n    \"token\": 69809}",
+							"raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"password\": \"password\",\r\n    \"token\": \"f60ca00f9b95b6d0614d936de630ca8df34268d75a641153d3bd9bfe39caf6e1374c650d7468ea4af1974fb1742e2ade8b49c295fa7e1e84b030f0b93b4c8db6d24cf40dbe67\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -123,17 +590,132 @@
 							}
 						},
 						"url": {
-							"raw": "https://api-bub-it.vercel.app/api/v1/auth/reset-password",
+							"raw": "https://api.bub.icu/api/v1/auth/reset-password",
 							"host": [
-								"https://api-bub-it.vercel.app/api/v1"
+								"https://api.bub.icu/api/v1"
 							],
 							"path": [
 								"auth",
 								"reset-password"
 							]
-						}
+						},
+						"description": "Route to reset a user password"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Reset Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"password\": \"password\",\r\n    \"token\": \"f60ca00f9b95b6d0614d936de630ca8df34268d75a641153d3bd9bfe39caf6e1374c650d7468ea4af1974fb1742e2ade8b49c295fa7e1e84b030f0b93b4c8db6d24cf40dbe67\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.bub.icu/api/v1/auth/reset-password",
+									"host": [
+										"https://api.bub.icu/api/v1"
+									],
+									"path": [
+										"auth",
+										"reset-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25-QMEhPxpw7IPdJ9gVn6GQvE4JE6k\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Jun 2023 08:24:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"Password reset successfully\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Forgot Password",
@@ -142,7 +724,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"victoralayande4@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"email\": \"johndoe@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -150,19 +732,135 @@
 							}
 						},
 						"url": {
-							"raw": "https://api-bub-it.vercel.app/api/v1/auth/forgot-password",
+							"raw": "https://api.bub.icu/api/v1/auth/forgot-password",
 							"host": [
-								"https://api-bub-it.vercel.app/api/v1"
+								"https://api.bub.icu/api/v1"
 							],
 							"path": [
 								"auth",
 								"forgot-password"
 							]
-						}
+						},
+						"description": "Route to initialize a reset password.  \nA verification email is sent to verify the user"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Forgot Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"johndoe@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.bub.icu/api/v1/auth/forgot-password",
+									"host": [
+										"https://api.bub.icu/api/v1"
+									],
+									"path": [
+										"auth",
+										"forgot-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30-K+aXvin3kwJtNNnqBwHo7Fvmn3Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Jun 2023 08:22:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"Password reset email sent successfully\"\n}"
+						}
+					]
 				}
-			]
+			],
+			"description": "This folder contains user authentication routes"
 		},
 		{
 			"name": "User",
@@ -173,17 +871,123 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://api-bub-it.vercel.app/api/v1/users/",
+							"raw": "https://api.bub.icu/api/v1/users/",
 							"host": [
-								"https://api-bub-it.vercel.app/api/v1"
+								"https://api.bub.icu/api/v1"
 							],
 							"path": [
 								"users",
 								""
 							]
-						}
+						},
+						"description": "Route to get all users registered on the platform  \nOnly accessible to an admin"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get All Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.bub.icu/api/v1/users/",
+									"host": [
+										"https://api.bub.icu/api/v1"
+									],
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "952"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b8-Te/vnx79SkEMkGZPfJYtdgRzAoM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Jun 2023 15:40:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"users\": [\n        {\n            \"_id\": \"649a52f39f9ace4147bb2acd\",\n            \"email\": \"tunde@gmail.com\",\n            \"role\": \"user\",\n            \"verificationToken\": null,\n            \"isVerified\": true,\n            \"createdAt\": \"2023-06-27T03:09:39.542Z\",\n            \"updatedAt\": \"2023-06-27T06:37:32.792Z\",\n            \"__v\": 0,\n            \"verified\": \"2023-06-27T03:10:03.317Z\",\n            \"passwordToken\": null,\n            \"passwordTokenExpirationDate\": null\n        },\n        {\n            \"_id\": \"649a54099f9ace4147bb2aed\",\n            \"email\": \"john@yahoo.com\",\n            \"role\": \"user\",\n            \"verificationToken\": \"11247e6a422be5a20cb17443e1dd59e1248bfbfc772ea25ac3769751a26aa078776ce4fbe7a77c48a7ec4d7c71bd4f017aa52419acff3314555cbdc9d9232816fb638788d265\",\n            \"isVerified\": false,\n            \"createdAt\": \"2023-06-27T03:14:17.400Z\",\n            \"updatedAt\": \"2023-06-27T03:14:17.400Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"649a9a9b6bcc74ecfc314dd3\",\n            \"email\": \"johndoe@gmail.com\",\n            \"role\": \"admin\",\n            \"verificationToken\": null,\n            \"isVerified\": true,\n            \"createdAt\": \"2023-06-27T08:15:23.789Z\",\n            \"updatedAt\": \"2023-06-27T08:24:38.132Z\",\n            \"__v\": 0,\n            \"verified\": \"2023-06-27T08:21:54.027Z\",\n            \"passwordToken\": null,\n            \"passwordTokenExpirationDate\": null\n        }\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Single User",
@@ -191,17 +995,123 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://api-bub-it.vercel.app/api/v1/users/648d5a76ffccc47e1b82026d",
+							"raw": "https://api.bub.icu/api/v1/users/649a52f39f9ace4147bb2acd",
 							"host": [
-								"https://api-bub-it.vercel.app/api/v1"
+								"https://api.bub.icu/api/v1"
 							],
 							"path": [
 								"users",
-								"648d5a76ffccc47e1b82026d"
+								"649a52f39f9ace4147bb2acd"
 							]
-						}
+						},
+						"description": "Get a particuller user details  \nOnly accessible to the user and an admin"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Single User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.bub.icu/api/v1/users/649a52f39f9ace4147bb2acd",
+									"host": [
+										"https://api.bub.icu/api/v1"
+									],
+									"path": [
+										"users",
+										"649a52f39f9ace4147bb2acd"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "306"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"132-Bh0/4DpfB8R26Hs1S/NniL8ZEwA\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Jun 2023 15:42:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"_id\": \"649a52f39f9ace4147bb2acd\",\n        \"email\": \"tunde@gmail.com\",\n        \"role\": \"user\",\n        \"verificationToken\": null,\n        \"isVerified\": true,\n        \"createdAt\": \"2023-06-27T03:09:39.542Z\",\n        \"updatedAt\": \"2023-06-27T06:37:32.792Z\",\n        \"__v\": 0,\n        \"verified\": \"2023-06-27T03:10:03.317Z\",\n        \"passwordToken\": null,\n        \"passwordTokenExpirationDate\": null\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Show Current User",
@@ -209,17 +1119,123 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://api-bub-it.vercel.app/api/v1/users/showMe",
+							"raw": "https://api.bub.icu/api/v1/users/showMe",
 							"host": [
-								"https://api-bub-it.vercel.app/api/v1"
+								"https://api.bub.icu/api/v1"
 							],
 							"path": [
 								"users",
 								"showMe"
 							]
-						}
+						},
+						"description": "Shows if a user is currently logged in or not  \nShows the user that is logged in"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Show Current User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.bub.icu/api/v1/users/showMe",
+									"host": [
+										"https://api.bub.icu/api/v1"
+									],
+									"path": [
+										"users",
+										"showMe"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3d-FzIeVL1AgcWWCYVdwKtdcGZJJnU\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Jun 2023 16:09:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"userId\": \"649a9a9b6bcc74ecfc314dd3\",\n        \"role\": \"admin\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Update User",
@@ -228,7 +1244,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"qwrg\",\r\n    \"lastName\": \"acc\",\r\n    \"email\": \"xyz@gmail.com\",\r\n    \"phoneNumber\": \"1232131212\"\r\n}",
+							"raw": "{\r\n    \"email\": \"johndoe@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -236,17 +1252,140 @@
 							}
 						},
 						"url": {
-							"raw": "https://api-bub-it.vercel.app/api/v1/users/updateUser",
+							"raw": "https://api.bub.icu/api/v1/users/updateUser",
 							"host": [
-								"https://api-bub-it.vercel.app/api/v1"
+								"https://api.bub.icu/api/v1"
 							],
 							"path": [
 								"users",
 								"updateUser"
 							]
-						}
+						},
+						"description": "Route to update user details  \nCan only be accessed by the user  \nNot used in this project because only emails are collected"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Update User",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"johndoe@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.bub.icu/api/v1/users/updateUser",
+									"host": [
+										"https://api.bub.icu/api/v1"
+									],
+									"path": [
+										"users",
+										"updateUser"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "accessToken=s%3AeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6IjY0OWE5YTliNmJjYzc0ZWNmYzMxNGRkMyIsInJvbGUiOiJhZG1pbiJ9LCJpYXQiOjE2ODc4ODIwNjN9.7XRywidFEpNqTK3lb-s8RvsANIKQviqhnhzd8tHs3Zk.my2PeFzjyvh0tV%2F%2FXX93CHrrCUqPhXti488OXLtdzl0; Path=/; Expires=Wed, 28 Jun 2023 16:07:43 GMT; HttpOnly; Secure"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "refreshToken=s%3AeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6IjY0OWE5YTliNmJjYzc0ZWNmYzMxNGRkMyIsInJvbGUiOiJhZG1pbiJ9LCJpYXQiOjE2ODc4ODIwNjN9.7XRywidFEpNqTK3lb-s8RvsANIKQviqhnhzd8tHs3Zk.my2PeFzjyvh0tV%2F%2FXX93CHrrCUqPhXti488OXLtdzl0; Path=/; Expires=Thu, 27 Jul 2023 16:07:43 GMT; HttpOnly; Secure"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3d-FzIeVL1AgcWWCYVdwKtdcGZJJnU\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Jun 2023 16:07:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"userId\": \"649a9a9b6bcc74ecfc314dd3\",\n        \"role\": \"admin\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Update User Password",
@@ -255,7 +1394,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"oldPassword\": \"qwerty\",\r\n    \"newPassword\": \"secret\"\r\n}",
+							"raw": "{\r\n    \"oldPassword\": \"password\",\r\n    \"newPassword\": \"secret\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -263,19 +1402,135 @@
 							}
 						},
 						"url": {
-							"raw": "https://api-bub-it.vercel.app/api/v1/users/updateUserPassword",
+							"raw": "https://api.bub.icu/api/v1/users/updateUserPassword",
 							"host": [
-								"https://api-bub-it.vercel.app/api/v1"
+								"https://api.bub.icu/api/v1"
 							],
 							"path": [
 								"users",
 								"updateUserPassword"
 							]
-						}
+						},
+						"description": "Route to update a logged in user password  \nCan only be accessed by the user"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Update User Password",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"oldPassword\": \"password\",\r\n    \"newPassword\": \"secret\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.bub.icu/api/v1/users/updateUserPassword",
+									"host": [
+										"https://api.bub.icu/api/v1"
+									],
+									"path": [
+										"users",
+										"updateUserPassword"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "36"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"24-teu18QROoBQhP4cKs7ura/QyM7U\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Jun 2023 15:58:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"Success! Password Updated.\"\n}"
+						}
+					]
 				}
-			]
+			],
+			"description": "This folder contains all user routes"
 		},
 		{
 			"name": "URL",
@@ -286,17 +1541,123 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://api-bub-it.vercel.app/api/v1/urls/all",
+							"raw": "https://api.bub.icu/api/v1/urls/all",
 							"host": [
-								"https://api-bub-it.vercel.app/api/v1"
+								"https://api.bub.icu/api/v1"
 							],
 							"path": [
 								"urls",
 								"all"
 							]
-						}
+						},
+						"description": "Route to get the details of all shortened URLs.  \nNB: This route is only accessible to an admin"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get all URLs",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.bub.icu/api/v1/urls/all",
+									"host": [
+										"https://api.bub.icu/api/v1"
+									],
+									"path": [
+										"urls",
+										"all"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "12656"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3170-obJcSfdWwM0ql8AjT0C2P9dvTMc\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Jun 2023 15:29:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"All shortURLs fetched successfully\",\n    \"urls\": [\n        {\n            \"_id\": \"649a531a9f9ace4147bb2adb\",\n            \"urlCode\": \"kZ_qoVFO1\",\n            \"longUrl\": \"https://stammy.hashnode.dev/piggyvest-clone\",\n            \"qrcode\": \"data:image/png;base64,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\",\n            \"shortUrl\": \"http://localhost:5173/kZ_qoVFO1\",\n            \"custom\": \"\",\n            \"customUrl\": null,\n            \"noOfClicks\": 6,\n            \"user\": \"649a52f39f9ace4147bb2acd\",\n            \"analytics\": [\n                {\n                    \"ip\": \"::1\",\n                    \"browser\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36\",\n                    \"date\": \"2023-06-27T03:44:05.835Z\"\n                },\n                {\n                    \"ip\": \"::1\",\n                    \"browser\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36\",\n                    \"date\": \"2023-06-27T03:44:05.810Z\"\n                },\n                {\n                    \"ip\": \"::1\",\n                    \"browser\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36\",\n                    \"date\": \"2023-06-27T03:43:54.104Z\"\n                },\n                {\n                    \"ip\": \"::1\",\n                    \"browser\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36\",\n                    \"date\": \"2023-06-27T03:43:54.064Z\"\n                },\n                {\n                    \"ip\": \"::1\",\n                    \"browser\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36\",\n                    \"date\": \"2023-06-27T03:43:40.559Z\"\n                },\n                {\n                    \"ip\": \"::1\",\n                    \"browser\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36\",\n                    \"date\": \"2023-06-27T03:43:40.532Z\"\n                }\n            ],\n            \"createdAt\": \"2023-06-27T03:10:18.122Z\",\n            \"updatedAt\": \"2023-06-27T03:44:05.836Z\",\n            \"__v\": 6\n        },\n        {\n            \"_id\": \"649a5b189f79f7c19aa848f7\",\n            \"urlCode\": \"orzzRsE7N\",\n            \"longUrl\": \"https://url-shortener-one-black.vercel.app/\",\n            \"qrcode\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAYAAAAZtYVBAAAAAklEQVR4AewaftIAAAY6SURBVO3BQY4cwRHAQLKw//8yrWOeGhj0rFyWM8L+YK1LHNa6yGGtixzWushhrYsc1rrIYa2LHNa6yGGtixzWushhrYsc1rrIYa2LHNa6yGGtixzWusgPL6n8TRVvqEwVb6hMFZPKk4pJZaqYVKaKJyp/U8Ubh7UucljrIoe1LvLDl1V8k8obKk9UpoonKm9UvFHxRsU3qXzTYa2LHNa6yGGti/zwy1Q+UfEJlScVb6g8qXhSMalMFU9UPlHxCZVPVPymw1oXOax1kcNaF/nh/5zKVDFVTCqfUJkqPlHxROVfcljrIoe1LnJY6yI//ONUnlQ8UXmi8qTiicpUMalMFVPFv+Sw1kUOa13ksNZFfvhlFX9TxRsqU8U3qUwVk8pUMak8qfhExU0Oa13ksNZFDmtd5IcvU7mJylQxqUwVk8pUMalMFZPKVDGpTBWTylQxqXxC5WaHtS5yWOsih7Uu8sNLFTdR+UTFb6qYVJ6oTBWTylTxpOJ/yWGtixzWushhrYv88JLKVDGpfFPFVPFE5YnKGxWTylTxiYpJ5Q2Vb6r4TYe1LnJY6yKHtS7yw0sVk8qTiknlScUTlaniExWTylTxROWJyhsVk8o3VUwqn1CZKt44rHWRw1oXOax1kR9eUnlS8YbKGxVPVJ6oPKmYVKaKJypPVKaKJypPKiaVqWJSmVSmim86rHWRw1oXOax1EfuDL1KZKj6hMlU8UZkq3lCZKiaVNyomlanim1SmiknlExWTylTxxmGtixzWushhrYv88JLKN1VMKk8qnqhMFZPKVDGpTBWTylTxhso3VUwqn6iYVKaKbzqsdZHDWhc5rHUR+4MXVKaKJyqfqJhUpopJZaqYVKaKT6hMFZPKk4pvUpkqJpUnFZPKGxVvHNa6yGGtixzWusgPX6byTSpTxZOKN1SmiicqTyqeqEwVk8pUMVVMKn9TxTcd1rrIYa2LHNa6iP3BF6l8omJSmSqeqHxTxaTypOKbVD5RMak8qZhUPlHxmw5rXeSw1kUOa13khy+rmFSmik+oTBWfqJhUPlExqTxRmSo+UTGpPFF5UjGpfKLiicpU8cZhrYsc1rrIYa2L/PCSyhsqU8UbFZPKVDGpTCpPKiaVqWJS+W9SeVIxqUwqf9NhrYsc1rrIYa2L2B98kcpvqniiMlVMKt9U8URlqniiMlU8UZkqnqg8qZhUnlR802GtixzWushhrYvYH7yg8qTim1SmiicqTyomlScVb6i8UfFEZaqYVN6omFSmijcOa13ksNZFDmtd5If/MpVvUnlSMalMFZPKpDJVPFF5UjGpTBWTyt9UMan8psNaFzmsdZHDWhf54S9TmSomlaniExVPVL5J5UnFE5UnKm+oTBWfUJkqJpVvOqx1kcNaFzmsdRH7gxdUpopJ5ZsqfpPKVPEJlaliUpkq3lB5UvFNKlPFNx3WushhrYsc1rrID7+s4onKk4pPqEwVk8o3qUwVk8oTlScVf5PKJ1SmijcOa13ksNZFDmtd5IdfpjJVTBWTyqTypGKqmFSeVLxRMalMFZPKVPFEZar4hMonKj6h8k2HtS5yWOsih7Uu8sNLFU8qPlHxCZWpYqqYVCaVT1RMKk9UnqhMFW9UfELlicpU8ZsOa13ksNZFDmtd5IeXVP6miqliUpkq3qiYVD5R8UTlEyqfUJkqvqnimw5rXeSw1kUOa13khy+r+CaVJypTxZOKSWWqmFTeUJkqPlExqXyi4hMqT1SeVLxxWOsih7UucljrIj/8MpVPVPwmlU9UPFGZKt5QeVIxqUwq31TxROWbDmtd5LDWRQ5rXeSHf5zKk4pJ5RMVT1SmiqliUpkqnlRMKlPFE5WpYlKZKn7TYa2LHNa6yGGti/zwj1F5UjGpTBWTyhOVqWKqeKLyRGWqmFSeqDypmFSmiicV33RY6yKHtS5yWOsiP/yyit9UMak8UfmmijcqJpWpYlKZKt5QeaIyVfymw1oXOax1kcNaF/nhy1T+JpWpYlJ5o2JSeaLypOJJxaTyRGWqeKIyVXxCZar4psNaFzmsdZHDWhexP1jrEoe1LnJY6yKHtS5yWOsih7UucljrIoe1LnJY6yKHtS5yWOsih7UucljrIoe1LnJY6yKHtS7yH1FL95CeqkIuAAAAAElFTkSuQmCC\",\n            \"shortUrl\": \"http://localhost:5173/orzzRsE7N\",\n            \"custom\": \"\",\n            \"customUrl\": null,\n            \"noOfClicks\": 0,\n            \"user\": \"649a52f39f9ace4147bb2acd\",\n            \"analytics\": [],\n            \"createdAt\": \"2023-06-27T03:44:24.803Z\",\n            \"updatedAt\": \"2023-06-27T03:44:24.803Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"649a92096bcc74ecfc314dca\",\n            \"urlCode\": \"R3VsggoUz\",\n            \"longUrl\": \"https://github.com/Moyinoluwa-10/Url-Shortener-\",\n            \"qrcode\": \"data:image/png;base64,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\",\n            \"shortUrl\": \"http://localhost:5173/R3VsggoUz\",\n            \"custom\": \"shorten\",\n            \"customUrl\": \"http://localhost:5173/shorten\",\n            \"noOfClicks\": 2,\n            \"user\": \"649a52f39f9ace4147bb2acd\",\n            \"analytics\": [\n                {\n                    \"ip\": \"::1\",\n                    \"browser\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36\",\n                    \"date\": \"2023-06-27T07:38:55.785Z\"\n                },\n                {\n                    \"ip\": \"::1\",\n                    \"browser\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36\",\n                    \"date\": \"2023-06-27T07:38:55.731Z\"\n                }\n            ],\n            \"createdAt\": \"2023-06-27T07:38:49.708Z\",\n            \"updatedAt\": \"2023-06-27T07:38:55.787Z\",\n            \"__v\": 2\n        },\n        {\n            \"_id\": \"649afb7aa7b5b109ef542ac8\",\n            \"urlCode\": \"pDBmJyHYR\",\n            \"longUrl\": \"https://google.com\",\n            \"qrcode\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAYAAABRRIOnAAAAAklEQVR4AewaftIAAAOKSURBVO3BQY5jiRUDwcwH3f/KdC+84OoDglTlmTYjzB/M/NcxU46ZcsyUY6YcM+WYKcdMOWbKMVOOmXLMlGOmHDPlmCnHTHnxIZXflIRPqLwjCU9UWhKaym9KwieOmXLMlGOmvPiyJHyTyjtU3pGEJyrflIRvUvmmY6YcM+WYKS9+mMo7kvAOlSdJaCqfSEJT+YTKO5Lwk46ZcsyUY6a8+Mskoak8UWlJaEl4koS/yTFTjplyzJQXf7kkNJUnKi0JT1RaEv7NjplyzJRjprz4YUn4TSrvSEJTaSo/KQn/JMdMOWbKMVNefJnK/1ISmkpLQlNpSWgqLQlN5R0q/2THTDlmyjFTzB/8i6l8IglNpSXh/8kxU46ZcswU8wcfUGlJaCrflITfpPIkCU9UvikJP+mYKcdMOWaK+YMvUnmShE+otCQ0lSdJ+CaVloQnKi0J71BpSfimY6YcM+WYKS9+mUpLwhOVloSm8ptUWhKaSkvCE5UnSXii0pLwiWOmHDPlmCkvviwJTaUloak8ScI3qTxJQlNpSWgqn0jCO5LQVL7pmCnHTDlmivmDD6g8SUJT+UQSmkpLQlNpSfhJKk+S0FRaEprKO5LwiWOmHDPlmCkvviwJTaUloak8SUJTaUn4hMo7kvAkCU9UWhKaSktCU2lJ+KZjphwz5ZgpL35YEj6h0pLQVD6RhKbyROUdSXii8gmVloRPHDPlmCnHTHnxy1RaEppKS0JTaUl4ovJE5UkSmspPSsKTJDSVbzpmyjFTjpny4oeptCQ0lScqLQlN5ZuS0FQ+ofIJlZaEloRvOmbKMVOOmWL+4F9M5R1J+ITKkyS8Q+VJEn7TMVOOmXLMlBcfUvlNSWhJeIfKkyQ8SUJTeaLSkvAkCU3lHUn4xDFTjplyzJQXX5aEb1J5otKS8I4kPFFpSXhHEt6h0pLwm46ZcsyUY6a8+GEq70jCP0kSmsoTlU8koam0JDSVloRPHDPlmCnHTHnxl1NpSWgqn0hCU3mShKbSVJ6o/KRjphwz5ZgpL/4yKi0JT5LQVJ4koam0JLwjCU3lSRKayjcdM+WYKcdMefHDkvCTkvAJlSdJaCpPVL4pCb/pmCnHTDlmyosvU/lNKu9IwpMkNJWWhCcqLQlN5R0qv+mYKcdMOWaK+YOZ/zpmyjFTjplyzJRjphwz5Zgpx0w5ZsoxU46ZcsyUY6YcM+WYKf8B7SOFJl3T5SkAAAAASUVORK5CYII=\",\n            \"shortUrl\": \"http://localhost:5173/pDBmJyHYR\",\n            \"custom\": \"google\",\n            \"customUrl\": \"http://localhost:5173/google\",\n            \"noOfClicks\": 1,\n            \"user\": \"649a9a9b6bcc74ecfc314dd3\",\n            \"analytics\": [\n                {\n                    \"ip\": \"::1\",\n                    \"browser\": \"PostmanRuntime/7.32.3\",\n                    \"date\": \"2023-06-27T15:25:28.777Z\"\n                }\n            ],\n            \"createdAt\": \"2023-06-27T15:08:42.658Z\",\n            \"updatedAt\": \"2023-06-27T15:25:28.784Z\",\n            \"__v\": 1\n        },\n        {\n            \"_id\": \"649afd23a7b5b109ef542acb\",\n            \"urlCode\": \"Fh1n4tTDA\",\n            \"longUrl\": \"https://github.com\",\n            \"qrcode\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAYAAABRRIOnAAAAAklEQVR4AewaftIAAAOMSURBVO3BQY4jSQIDQWdA//+ybx3mwFMAQko10700iz+Y+cdhphxmymGmHGbKYaYcZsphphxmymGmHGbKYaYcZsphphxmymGmvHgoCb9J5SYJ71BpSWgqN0loKi0Jv0nlicNMOcyUw0x58WEqn5SET1K5UWlJ+CSVT0rCJx1mymGmHGbKiy9LwjtU3pGEpnKThBuVG5WWhCeS8A6VbzrMlMNMOcyUF3+ZJDSVJ1RuVP4mh5lymCmHmfLiL6PyRBKayk0Smsqf7DBTDjPlMFNefJnKb0pCU7lRaUloSfgmlf+Sw0w5zJTDTHnxYUn4N6m0JDSVloSm0pLQVFoS3pGE/7LDTDnMlMNMiT/4gyXhHSo3SWgq/08OM+UwUw4zJf7ggSQ0lZaET1J5IglN5SYJNyo3SfgklW86zJTDTDnMlPiDD0pCU7lJwo1KS0JTuUlCU2lJaCrvSEJTuUlCU3lHEprKJx1mymGmHGbKi4eS0FTeoXKThKbSkvCEyjuS0FSeSMKNyk0SmsoTh5lymCmHmRJ/8EFJeIfKJyXhRuUdSWgqLQlPqDyRhKbyxGGmHGbKYaa8eCgJ71BpSWgqLQk3KjcqLQlN5UblRqUl4UalJaGptCT8psNMOcyUw0yJP3ggCU3lT5KEd6jcJKGptCQ0lZaEptKS0FQ+6TBTDjPlMFNefFkSmspNEr5Jpam0JNwkoancJOEmCU8koak8cZgph5lymCkvvkylJaGpNJWbJNyotCTcJOFG5R0qLQnvULlRaUn4pMNMOcyUw0x58ctUWhLeoXKThCdUWhL+TUloKk3lkw4z5TBTDjMl/uAPloSm0pLQVJ5Iwo3KO5Jwo/KbDjPlMFMOM+XFQ0n4TSpN5UalJeFG5UalJeEmCU3lRqUl4R0qTxxmymGmHGbKiw9T+aQk3CShqbxD5SYJTeUdKu9IQlP5TYeZcpgph5ny4suS8A6VJ5LwSSotCTdJeEKlJaGptCQ0lScOM+UwUw4z5cVfTuUmCe9QuUnCjUpLQkvCTRK+6TBTDjPlMFNe/J9TaUl4QuUdKi0JNyotCZ90mCmHmXKYKS++TOWbVJ5Iwo3KTRKayk0S3qHymw4z5TBTDjPlxYcl4Tcl4R0qNyotCU2lqdwk4Ykk/KbDTDnMlMNMiT+Y+cdhphxmymGmHGbKYaYcZsphphxmymGmHGbKYaYcZsphphxmymGm/A9icZ31pB274QAAAABJRU5ErkJggg==\",\n            \"shortUrl\": \"http://localhost:5173/Fh1n4tTDA\",\n            \"custom\": \"\",\n            \"customUrl\": null,\n            \"noOfClicks\": 0,\n            \"user\": \"649a9a9b6bcc74ecfc314dd3\",\n            \"analytics\": [],\n            \"createdAt\": \"2023-06-27T15:15:47.842Z\",\n            \"updatedAt\": \"2023-06-27T15:15:47.842Z\",\n            \"__v\": 0\n        }\n    ],\n    \"count\": 5\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Single URL",
@@ -304,17 +1665,123 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://api-bub-it.vercel.app/api/v1/urls/6491edd4f3a229034dd2dc35",
+							"raw": "https://api.bub.icu/api/v1/urls/649afb7aa7b5b109ef542ac8",
 							"host": [
-								"https://api-bub-it.vercel.app/api/v1"
+								"https://api.bub.icu/api/v1"
 							],
 							"path": [
 								"urls",
-								"6491edd4f3a229034dd2dc35"
+								"649afb7aa7b5b109ef542ac8"
 							]
-						}
+						},
+						"description": "Get a particular user's URL details  \nNB: This route can only be accessed by the user and an admin"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Single URL",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.bub.icu/api/v1/urls/649afb7aa7b5b109ef542ac8",
+									"host": [
+										"https://api.bub.icu/api/v1"
+									],
+									"path": [
+										"urls",
+										"649afb7aa7b5b109ef542ac8"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1727"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6bf-n+WW1OxX9O80fsKflTjJXn1H8Ko\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Jun 2023 15:23:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"ShortURL fetched successfully\",\n    \"url\": {\n        \"_id\": \"649afb7aa7b5b109ef542ac8\",\n        \"urlCode\": \"pDBmJyHYR\",\n        \"longUrl\": \"https://google.com\",\n        \"qrcode\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAYAAABRRIOnAAAAAklEQVR4AewaftIAAAOKSURBVO3BQY5jiRUDwcwH3f/KdC+84OoDglTlmTYjzB/M/NcxU46ZcsyUY6YcM+WYKcdMOWbKMVOOmXLMlGOmHDPlmCnHTHnxIZXflIRPqLwjCU9UWhKaym9KwieOmXLMlGOmvPiyJHyTyjtU3pGEJyrflIRvUvmmY6YcM+WYKS9+mMo7kvAOlSdJaCqfSEJT+YTKO5Lwk46ZcsyUY6a8+Mskoak8UWlJaEl4koS/yTFTjplyzJQXf7kkNJUnKi0JT1RaEv7NjplyzJRjprz4YUn4TSrvSEJTaSo/KQn/JMdMOWbKMVNefJnK/1ISmkpLQlNpSWgqLQlN5R0q/2THTDlmyjFTzB/8i6l8IglNpSXh/8kxU46ZcswU8wcfUGlJaCrflITfpPIkCU9UvikJP+mYKcdMOWaK+YMvUnmShE+otCQ0lSdJ+CaVloQnKi0J71BpSfimY6YcM+WYKS9+mUpLwhOVloSm8ptUWhKaSkvCE5UnSXii0pLwiWOmHDPlmCkvviwJTaUloak8ScI3qTxJQlNpSWgqn0jCO5LQVL7pmCnHTDlmivmDD6g8SUJT+UQSmkpLQlNpSfhJKk+S0FRaEprKO5LwiWOmHDPlmCkvviwJTaUloak8SUJTaUn4hMo7kvAkCU9UWhKaSktCU2lJ+KZjphwz5ZgpL35YEj6h0pLQVD6RhKbyROUdSXii8gmVloRPHDPlmCnHTHnxy1RaEppKS0JTaUl4ovJE5UkSmspPSsKTJDSVbzpmyjFTjpny4oeptCQ0lScqLQlN5ZuS0FQ+ofIJlZaEloRvOmbKMVOOmWL+4F9M5R1J+ITKkyS8Q+VJEn7TMVOOmXLMlBcfUvlNSWhJeIfKkyQ8SUJTeaLSkvAkCU3lHUn4xDFTjplyzJQXX5aEb1J5otKS8I4kPFFpSXhHEt6h0pLwm46ZcsyUY6a8+GEq70jCP0kSmsoTlU8koam0JDSVloRPHDPlmCnHTHnxl1NpSWgqn0hCU3mShKbSVJ6o/KRjphwz5ZgpL/4yKi0JT5LQVJ4koam0JLwjCU3lSRKayjcdM+WYKcdMefHDkvCTkvAJlSdJaCpPVL4pCb/pmCnHTDlmyosvU/lNKu9IwpMkNJWWhCcqLQlN5R0qv+mYKcdMOWaK+YOZ/zpmyjFTjplyzJRjphwz5Zgpx0w5ZsoxU46ZcsyUY6YcM+WYKf8B7SOFJl3T5SkAAAAASUVORK5CYII=\",\n        \"shortUrl\": \"http://localhost:5173/pDBmJyHYR\",\n        \"custom\": \"google\",\n        \"customUrl\": \"http://localhost:5173/google\",\n        \"noOfClicks\": 0,\n        \"user\": \"649a9a9b6bcc74ecfc314dd3\",\n        \"analytics\": [],\n        \"createdAt\": \"2023-06-27T15:08:42.658Z\",\n        \"updatedAt\": \"2023-06-27T15:08:42.658Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Redirect URL",
@@ -322,25 +1789,249 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://api-bub-it.vercel.app/api/v1/urls/6491edd4f3a229034dd2dc35",
+							"raw": "https://api.bub.icu/api/v1/urls/redirect/pDBmJyHYR",
 							"host": [
-								"https://api-bub-it.vercel.app/api/v1"
+								"https://api.bub.icu/api/v1"
 							],
 							"path": [
 								"urls",
-								"6491edd4f3a229034dd2dc35"
+								"redirect",
+								"pDBmJyHYR"
 							]
-						}
+						},
+						"description": "This route is to redirect a user to the original site.  \nIt is accessible by anyone with the shortened URL link"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Redirect URL",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.bub.icu/api/v1/urls/redirect/pDBmJyHYR",
+									"host": [
+										"https://api.bub.icu/api/v1"
+									],
+									"path": [
+										"urls",
+										"redirect",
+										"pDBmJyHYR"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f-U5d0aeZvbAk414FUxLrAwApTQQ0\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Jun 2023 15:25:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"redirected\",\n    \"url\": \"https://google.com\"\n}"
+						}
+					]
 				},
 				{
-					"name": "Get a User URL",
+					"name": "Get a User URLs",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "https://api.bub.icu/api/v1/urls/user",
+							"host": [
+								"https://api.bub.icu/api/v1"
+							],
+							"path": [
+								"urls",
+								"user"
+							]
+						},
+						"description": "Get list of a particular user's shortened URLs  \nNB: This route can only be accessed by the user and an admin"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get a User URLs",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.bub.icu/api/v1/urls/user",
+									"host": [
+										"https://api.bub.icu/api/v1"
+									],
+									"path": [
+										"urls",
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3399"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d47-3N97BCun3LOGSCNJrvCHvZZf2MQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Jun 2023 15:18:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"All shortURLs fetched successfully\",\n    \"urls\": [\n        {\n            \"_id\": \"649afb7aa7b5b109ef542ac8\",\n            \"urlCode\": \"pDBmJyHYR\",\n            \"longUrl\": \"https://google.com\",\n            \"qrcode\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAYAAABRRIOnAAAAAklEQVR4AewaftIAAAOKSURBVO3BQY5jiRUDwcwH3f/KdC+84OoDglTlmTYjzB/M/NcxU46ZcsyUY6YcM+WYKcdMOWbKMVOOmXLMlGOmHDPlmCnHTHnxIZXflIRPqLwjCU9UWhKaym9KwieOmXLMlGOmvPiyJHyTyjtU3pGEJyrflIRvUvmmY6YcM+WYKS9+mMo7kvAOlSdJaCqfSEJT+YTKO5Lwk46ZcsyUY6a8+Mskoak8UWlJaEl4koS/yTFTjplyzJQXf7kkNJUnKi0JT1RaEv7NjplyzJRjprz4YUn4TSrvSEJTaSo/KQn/JMdMOWbKMVNefJnK/1ISmkpLQlNpSWgqLQlN5R0q/2THTDlmyjFTzB/8i6l8IglNpSXh/8kxU46ZcswU8wcfUGlJaCrflITfpPIkCU9UvikJP+mYKcdMOWaK+YMvUnmShE+otCQ0lSdJ+CaVloQnKi0J71BpSfimY6YcM+WYKS9+mUpLwhOVloSm8ptUWhKaSkvCE5UnSXii0pLwiWOmHDPlmCkvviwJTaUloak8ScI3qTxJQlNpSWgqn0jCO5LQVL7pmCnHTDlmivmDD6g8SUJT+UQSmkpLQlNpSfhJKk+S0FRaEprKO5LwiWOmHDPlmCkvviwJTaUloak8SUJTaUn4hMo7kvAkCU9UWhKaSktCU2lJ+KZjphwz5ZgpL35YEj6h0pLQVD6RhKbyROUdSXii8gmVloRPHDPlmCnHTHnxy1RaEppKS0JTaUl4ovJE5UkSmspPSsKTJDSVbzpmyjFTjpny4oeptCQ0lScqLQlN5ZuS0FQ+ofIJlZaEloRvOmbKMVOOmWL+4F9M5R1J+ITKkyS8Q+VJEn7TMVOOmXLMlBcfUvlNSWhJeIfKkyQ8SUJTeaLSkvAkCU3lHUn4xDFTjplyzJQXX5aEb1J5otKS8I4kPFFpSXhHEt6h0pLwm46ZcsyUY6a8+GEq70jCP0kSmsoTlU8koam0JDSVloRPHDPlmCnHTHnxl1NpSWgqn0hCU3mShKbSVJ6o/KRjphwz5ZgpL/4yKi0JT5LQVJ4koam0JLwjCU3lSRKayjcdM+WYKcdMefHDkvCTkvAJlSdJaCpPVL4pCb/pmCnHTDlmyosvU/lNKu9IwpMkNJWWhCcqLQlN5R0qv+mYKcdMOWaK+YOZ/zpmyjFTjplyzJRjphwz5Zgpx0w5ZsoxU46ZcsyUY6YcM+WYKf8B7SOFJl3T5SkAAAAASUVORK5CYII=\",\n            \"shortUrl\": \"http://localhost:5173/pDBmJyHYR\",\n            \"custom\": \"google\",\n            \"customUrl\": \"http://localhost:5173/google\",\n            \"noOfClicks\": 0,\n            \"user\": \"649a9a9b6bcc74ecfc314dd3\",\n            \"analytics\": [],\n            \"createdAt\": \"2023-06-27T15:08:42.658Z\",\n            \"updatedAt\": \"2023-06-27T15:08:42.658Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"649afd23a7b5b109ef542acb\",\n            \"urlCode\": \"Fh1n4tTDA\",\n            \"longUrl\": \"https://github.com\",\n            \"qrcode\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAYAAABRRIOnAAAAAklEQVR4AewaftIAAAOMSURBVO3BQY4jSQIDQWdA//+ybx3mwFMAQko10700iz+Y+cdhphxmymGmHGbKYaYcZsphphxmymGmHGbKYaYcZsphphxmymGmvHgoCb9J5SYJ71BpSWgqN0loKi0Jv0nlicNMOcyUw0x58WEqn5SET1K5UWlJ+CSVT0rCJx1mymGmHGbKiy9LwjtU3pGEpnKThBuVG5WWhCeS8A6VbzrMlMNMOcyUF3+ZJDSVJ1RuVP4mh5lymCmHmfLiL6PyRBKayk0Smsqf7DBTDjPlMFNefJnKb0pCU7lRaUloSfgmlf+Sw0w5zJTDTHnxYUn4N6m0JDSVloSm0pLQVFoS3pGE/7LDTDnMlMNMiT/4gyXhHSo3SWgq/08OM+UwUw4zJf7ggSQ0lZaET1J5IglN5SYJNyo3SfgklW86zJTDTDnMlPiDD0pCU7lJwo1KS0JTuUlCU2lJaCrvSEJTuUlCU3lHEprKJx1mymGmHGbKi4eS0FTeoXKThKbSkvCEyjuS0FSeSMKNyk0SmsoTh5lymCmHmRJ/8EFJeIfKJyXhRuUdSWgqLQlPqDyRhKbyxGGmHGbKYaa8eCgJ71BpSWgqLQk3KjcqLQlN5UblRqUl4UalJaGptCT8psNMOcyUw0yJP3ggCU3lT5KEd6jcJKGptCQ0lZaEptKS0FQ+6TBTDjPlMFNefFkSmspNEr5Jpam0JNwkoancJOEmCU8koak8cZgph5lymCkvvkylJaGpNJWbJNyotCTcJOFG5R0qLQnvULlRaUn4pMNMOcyUw0x58ctUWhLeoXKThCdUWhL+TUloKk3lkw4z5TBTDjMl/uAPloSm0pLQVJ5Iwo3KO5Jwo/KbDjPlMFMOM+XFQ0n4TSpN5UalJeFG5UalJeEmCU3lRqUl4R0qTxxmymGmHGbKiw9T+aQk3CShqbxD5SYJTeUdKu9IQlP5TYeZcpgph5ny4suS8A6VJ5LwSSotCTdJeEKlJaGptCQ0lScOM+UwUw4z5cVfTuUmCe9QuUnCjUpLQkvCTRK+6TBTDjPlMFNe/J9TaUl4QuUdKi0JNyotCZ90mCmHmXKYKS++TOWbVJ5Iwo3KTRKayk0S3qHymw4z5TBTDjPlxYcl4Tcl4R0qNyotCU2lqdwk4Ykk/KbDTDnMlMNMiT+Y+cdhphxmymGmHGbKYaYcZsphphxmymGmHGbKYaYcZsphphxmymGm/A9icZ31pB274QAAAABJRU5ErkJggg==\",\n            \"shortUrl\": \"http://localhost:5173/Fh1n4tTDA\",\n            \"custom\": \"\",\n            \"customUrl\": null,\n            \"noOfClicks\": 0,\n            \"user\": \"649a9a9b6bcc74ecfc314dd3\",\n            \"analytics\": [],\n            \"createdAt\": \"2023-06-27T15:15:47.842Z\",\n            \"updatedAt\": \"2023-06-27T15:15:47.842Z\",\n            \"__v\": 0\n        }\n    ],\n    \"count\": 2\n}"
+						}
+					]
 				},
 				{
 					"name": "Create URL",
@@ -349,7 +2040,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"longUrl\":\"https://etyhjh\",\r\n    \"custom\": \"asd\"\r\n}",
+							"raw": "{\r\n    \"longUrl\":\"https://github.com\",\r\n    \"custom\": \"\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -357,27 +2048,259 @@
 							}
 						},
 						"url": {
-							"raw": "https://api-bub-it.vercel.app/api/v1/urls/shorten",
+							"raw": "https://api.bub.icu/api/v1/urls/shorten",
 							"host": [
-								"https://api-bub-it.vercel.app/api/v1"
+								"https://api.bub.icu/api/v1"
 							],
 							"path": [
 								"urls",
 								"shorten"
 							]
-						}
+						},
+						"description": "Route to shorten your long URLs  \nNB: You can also customize your ULR endings by passing a value to the custom field"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Create URL",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"longUrl\":\"https://google.com\",\r\n    \"custom\": \"google\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.bub.icu/api/v1/urls/shorten",
+									"host": [
+										"https://api.bub.icu/api/v1"
+									],
+									"path": [
+										"urls",
+										"shorten"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1727"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6bf-Qal4LawXMkK6gg9sTBBJVNN2SWQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Jun 2023 15:08:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"ShortURL created successfully\",\n    \"url\": {\n        \"urlCode\": \"pDBmJyHYR\",\n        \"longUrl\": \"https://google.com\",\n        \"qrcode\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAYAAABRRIOnAAAAAklEQVR4AewaftIAAAOKSURBVO3BQY5jiRUDwcwH3f/KdC+84OoDglTlmTYjzB/M/NcxU46ZcsyUY6YcM+WYKcdMOWbKMVOOmXLMlGOmHDPlmCnHTHnxIZXflIRPqLwjCU9UWhKaym9KwieOmXLMlGOmvPiyJHyTyjtU3pGEJyrflIRvUvmmY6YcM+WYKS9+mMo7kvAOlSdJaCqfSEJT+YTKO5Lwk46ZcsyUY6a8+Mskoak8UWlJaEl4koS/yTFTjplyzJQXf7kkNJUnKi0JT1RaEv7NjplyzJRjprz4YUn4TSrvSEJTaSo/KQn/JMdMOWbKMVNefJnK/1ISmkpLQlNpSWgqLQlN5R0q/2THTDlmyjFTzB/8i6l8IglNpSXh/8kxU46ZcswU8wcfUGlJaCrflITfpPIkCU9UvikJP+mYKcdMOWaK+YMvUnmShE+otCQ0lSdJ+CaVloQnKi0J71BpSfimY6YcM+WYKS9+mUpLwhOVloSm8ptUWhKaSkvCE5UnSXii0pLwiWOmHDPlmCkvviwJTaUloak8ScI3qTxJQlNpSWgqn0jCO5LQVL7pmCnHTDlmivmDD6g8SUJT+UQSmkpLQlNpSfhJKk+S0FRaEprKO5LwiWOmHDPlmCkvviwJTaUloak8SUJTaUn4hMo7kvAkCU9UWhKaSktCU2lJ+KZjphwz5ZgpL35YEj6h0pLQVD6RhKbyROUdSXii8gmVloRPHDPlmCnHTHnxy1RaEppKS0JTaUl4ovJE5UkSmspPSsKTJDSVbzpmyjFTjpny4oeptCQ0lScqLQlN5ZuS0FQ+ofIJlZaEloRvOmbKMVOOmWL+4F9M5R1J+ITKkyS8Q+VJEn7TMVOOmXLMlBcfUvlNSWhJeIfKkyQ8SUJTeaLSkvAkCU3lHUn4xDFTjplyzJQXX5aEb1J5otKS8I4kPFFpSXhHEt6h0pLwm46ZcsyUY6a8+GEq70jCP0kSmsoTlU8koam0JDSVloRPHDPlmCnHTHnxl1NpSWgqn0hCU3mShKbSVJ6o/KRjphwz5ZgpL/4yKi0JT5LQVJ4koam0JLwjCU3lSRKayjcdM+WYKcdMefHDkvCTkvAJlSdJaCpPVL4pCb/pmCnHTDlmyosvU/lNKu9IwpMkNJWWhCcqLQlN5R0qv+mYKcdMOWaK+YOZ/zpmyjFTjplyzJRjphwz5Zgpx0w5ZsoxU46ZcsyUY6YcM+WYKf8B7SOFJl3T5SkAAAAASUVORK5CYII=\",\n        \"shortUrl\": \"http://localhost:5173/pDBmJyHYR\",\n        \"custom\": \"google\",\n        \"customUrl\": \"http://localhost:5173/google\",\n        \"noOfClicks\": 0,\n        \"user\": \"649a9a9b6bcc74ecfc314dd3\",\n        \"analytics\": [],\n        \"_id\": \"649afb7aa7b5b109ef542ac8\",\n        \"createdAt\": \"2023-06-27T15:08:42.658Z\",\n        \"updatedAt\": \"2023-06-27T15:08:42.658Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
 				},
 				{
-					"name": "Delete Url",
+					"name": "Delete URL",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://api.bub.icu/api/v1/urls/649a531a9f9ace4147bb2adb",
+							"host": [
+								"https://api.bub.icu/api/v1"
+							],
+							"path": [
+								"urls",
+								"649a531a9f9ace4147bb2adb"
+							]
+						},
+						"description": "Route to delete a shortened URL  \nOnly accessible by the owner of the URL and an admin"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Delete URL",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://api.bub.icu/api/v1/urls/649a531a9f9ace4147bb2adb",
+									"host": [
+										"https://api.bub.icu/api/v1"
+									],
+									"path": [
+										"urls",
+										"649a531a9f9ace4147bb2adb"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27-KTahgqzg14hk6NsJryK/17AIy2s\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Jun 2023 15:30:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"msg\": \"ShortURL deleted successfully\"\n}"
+						}
+					]
 				}
-			]
+			],
+			"description": "This folder contains the URL routes"
 		}
 	]
 }

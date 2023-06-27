@@ -47,12 +47,13 @@ app.use(mongoSanitize());
 // app.use(express.static("./public"));
 app.use(express.static(path.join(__dirname, "public")));
 
-// app.get("/", (req, res) => {
-//   return res.json({
-//     status: true,
-//     message: "Welcome to shortener",
-//   });
-// });
+app.get("/", (req, res) => {
+  res.send('<h1>Bub API</h1><a href="/api-docs">Documentation</a>');
+});
+
+app.get("/api-docs", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "api.html"));
+});
 
 // routes
 app.use("/api/v1/auth", authRoutes);
