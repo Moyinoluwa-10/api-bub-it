@@ -6,7 +6,7 @@ const Cache = require("./cache/redis");
 // start the server
 const start = async () => {
   try {
-    // Cache.connect();
+    Cache.connect();
     await connectToMongoDB(MONGODB_URI);
     app.listen(PORT, () => {
       console.log(`server is listening on https://localhost:${PORT}`);
