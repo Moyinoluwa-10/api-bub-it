@@ -34,6 +34,7 @@ app.use(
   cors({
     origin: [
       "https://www.bub.icu",
+      "https://bub.icu",
       "http://localhost:5173",
       "https://bub-it.vercel.app",
     ],

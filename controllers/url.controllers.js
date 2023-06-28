@@ -14,7 +14,12 @@ const createUrl = async (req, res) => {
   if (!validUrl.isUri(baseUrl)) throw new BadRequestError("Invalid base URL");
   const urlCode = shortid.generate();
 
-  if (!validUrl.isUri(longUrl)) throw new BadRequestError("Invalid long URL");
+  console.log(validUrl.isWebUri(longUrl));
+  console.log(!validUrl.isWebUri(longUrl));
+
+  if (!validUrl.isWebUri(longUrl))
+    throw new BadRequestError("Invalid long URL");
+
   let userId;
   if (req.user) {
     userId = req.user.userId || null;
