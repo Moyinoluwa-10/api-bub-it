@@ -8,7 +8,7 @@ const mail = {
 };
 
 const sendVerificationEmail = async ({ name, email, token, origin }) => {
-  console.log(origin);
+  // console.log(origin);
   const verificationLink = `${origin}/user/verify-email?token=${token}&email=${email}`;
 
   mail.to = email;

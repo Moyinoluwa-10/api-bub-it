@@ -9,7 +9,7 @@ const {
   sendResetPasswordEmail,
   sendVerificationEmail,
 } = require("../utils");
-const { ORIGIN } = require("../config/config");
+const { ORIGIN, NODE_ENV } = require("../config/config");
 const crypto = require("crypto");
 
 const signup = async (req, res) => {
@@ -23,6 +23,11 @@ const signup = async (req, res) => {
   const origin = req.headers.origin;
 
   const user = await User.create(req.body);
+  if (process.env.NODE_ENV === "test") {
+    return res.status(StatusCodes.CREATED).json({
+      msg: "Success! Please check your email to verify account",
+    });
+  }
 
   await sendVerificationEmail({
     name: user.firstName,
