@@ -20,7 +20,7 @@ const signup = async (req, res) => {
   }
   const verificationToken = crypto.randomBytes(70).toString("hex");
   req.body.verificationToken = verificationToken;
-  const origin = req.headers.origin;
+  const origin = req.headers.origin || ORIGIN;
 
   const user = await User.create(req.body);
   if (process.env.NODE_ENV === "test") {
@@ -127,7 +127,7 @@ const forgotPassword = async (req, res) => {
   const user = await User.findOne({ email });
   if (user) {
     const verificationToken = crypto.randomBytes(70).toString("hex");
-    const origin = req.headers.origin;
+    const origin = req.headers.origin || ORIGIN;
     await sendResetPasswordEmail({
       name: user.firstName,
       email: user.email,
