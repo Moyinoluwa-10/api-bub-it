@@ -14,7 +14,7 @@ const {
 
 const router = express.Router();
 
-router.post("/shorten", authenticateUser, createUrl);
+router.post("/shorten", createUrl);
 router.get("/all", authenticateUser, authorizePermissions("admin"), getAllUrls);
 router.get("/user", authenticateUser, getUserUrls);
 router.get("/redirect/:urlCode", redirectUrl);

@@ -15,10 +15,14 @@ const createUrl = async (req, res) => {
   const urlCode = shortid.generate();
 
   if (!validUrl.isUri(longUrl)) throw new BadRequestError("Invalid long URL");
+  let userId;
+  if (req.user) {
+    userId = req.user.userId || null;
+  }
 
   let url = await urlModel.findOne({
     longUrl,
-    user: req.user.userId,
+    user: userId,
   });
 
   if (url) return res.json({ msg: "ShortURL already created", url });
@@ -37,10 +41,12 @@ const createUrl = async (req, res) => {
     shortUrl,
     customUrl,
     qrcode,
-    user: req.user.userId,
+    user: userId,
   });
   await url.save();
-  await Cache.redis.del(`url:user:${req.user.userId}`);
+  if (req.user) {
+    await Cache.redis.del(`url:user:${req.user.userId}`);
+  }
   await Cache.redis.del("urls");
   return res.status(StatusCodes.CREATED).json({
     msg: "ShortURL created successfully",
