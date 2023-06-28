@@ -95,8 +95,9 @@ const getUserUrls = async (req, res) => {
   if (cachedUrl) {
     // console.log("Cache hit");
     return res.status(StatusCodes.OK).json({
-      msg: "ShortURL fetched successfully",
-      url: JSON.parse(cachedUrl),
+      msg: "All shortURLs fetched successfully",
+      urls: JSON.parse(cachedUrl),
+      count: JSON.parse(cachedUrl).length,
     });
   }
   // console.log("Cache miss");
