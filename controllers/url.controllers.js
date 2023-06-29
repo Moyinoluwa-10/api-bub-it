@@ -11,7 +11,7 @@ const { BASE_URL } = require("../config/config");
 const Cache = require("../cache/redis");
 
 const createUrl = async (req, res) => {
-  const baseUrl = "https://api.bub.icu";
+  const baseUrl = "https://bub.icu";
   const { longUrl, custom } = req.body;
   if (!validUrl.isUri(baseUrl)) throw new BadRequestError("Invalid base URL");
   const urlCode = shortid.generate();
