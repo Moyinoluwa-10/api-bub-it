@@ -55,6 +55,9 @@ const optionalAuthentication = async (req, res, next) => {
       refreshToken: payload.refreshToken,
     });
 
+    console.log(existingToken);
+    console.log(existingToken?.isValid);
+
     if (!existingToken || !existingToken?.isValid) {
       throw new CustomError.UnauthenticatedError("Authentication Invalid 1");
     }

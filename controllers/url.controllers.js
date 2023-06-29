@@ -11,7 +11,7 @@ const { BASE_URL } = require("../config/config");
 const Cache = require("../cache/redis");
 
 const createUrl = async (req, res) => {
-  const baseUrl = req.headers.origin || BASE_URL;
+  const baseUrl = "https://api.bub.icu";
   const { longUrl, custom } = req.body;
   if (!validUrl.isUri(baseUrl)) throw new BadRequestError("Invalid base URL");
   const urlCode = shortid.generate();
@@ -155,7 +155,7 @@ const redirectUrl = async (req, res) => {
     url.noOfClicks = url.noOfClicks + 1;
     await url.save();
     Cache.redis.set(`url:${url._id}`, JSON.stringify(url));
-    // return res.setHeader("Content-Type", "text/html").redirect(url.longUrl);
+    return res.setHeader("Content-Type", "text/html").redirect(url.longUrl);
     return res
       .status(StatusCodes.OK)
       .json({ msg: "redirected", url: url.longUrl });

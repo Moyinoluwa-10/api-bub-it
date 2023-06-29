@@ -1,4 +1,5 @@
 require("express-async-errors");
+const { NODE_ENV } = require("./config/config");
 
 // express
 const express = require("express");
@@ -21,7 +22,7 @@ const errorHandler = require("./middlewares/errorHandler");
 const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
 const urlRoutes = require("./routes/url.routes");
-const { NODE_ENV } = require("./config/config");
+const redirectRoutes = require("./routes/redirect.routes");
 
 // middlewares
 if (NODE_ENV === "production") {
@@ -58,6 +59,7 @@ app.get("/api-docs", (req, res) => {
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/urls", urlRoutes);
 app.use("/api/v1/users", userRoutes);
+app.use("/", redirectRoutes);
 
 // other middlewares
 app.use(notFound);
