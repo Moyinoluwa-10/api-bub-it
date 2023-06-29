@@ -22,6 +22,7 @@ const attachCookiesToResponse = ({ res, user, refreshToken }) => {
     signed: true,
     expires: new Date(Date.now() + oneMinute),
     sameSite: "lax",
+    domain: ".bub.icu",
   });
 
   res.cookie("refreshToken", refreshTokenJWT, {
@@ -30,6 +31,7 @@ const attachCookiesToResponse = ({ res, user, refreshToken }) => {
     signed: true,
     expires: new Date(Date.now() + longerExp),
     sameSite: "lax",
+    domain: ".bub.icu",
   });
 };
 
