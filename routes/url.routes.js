@@ -10,11 +10,12 @@ const {
 const {
   authenticateUser,
   authorizePermissions,
+  optionalAuthentication,
 } = require("../middlewares/authentication");
 
 const router = express.Router();
 
-router.post("/shorten", createUrl);
+router.post("/shorten", optionalAuthentication, createUrl);
 router.get("/all", authenticateUser, authorizePermissions("admin"), getAllUrls);
 router.get("/user", authenticateUser, getUserUrls);
 router.get("/redirect/:urlCode", redirectUrl);

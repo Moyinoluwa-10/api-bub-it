@@ -13,14 +13,15 @@ const attachCookiesToResponse = ({ res, user, refreshToken }) => {
   const refreshTokenJWT = createJWT({ payload: { user, refreshToken } });
 
   const oneDay = 1000 * 60 * 60 * 24;
+  const oneMinute = 1000 * 60;
   const longerExp = 1000 * 60 * 60 * 24 * 30;
 
   res.cookie("accessToken", accessTokenJWT, {
     httpOnly: true,
     secure: true,
     signed: true,
-    expires: new Date(Date.now() + oneDay),
-    // sameSite: "none",
+    expires: new Date(Date.now() + oneMinute),
+    sameSite: "lax",
   });
 
   res.cookie("refreshToken", refreshTokenJWT, {
@@ -28,7 +29,7 @@ const attachCookiesToResponse = ({ res, user, refreshToken }) => {
     secure: true,
     signed: true,
     expires: new Date(Date.now() + longerExp),
-    // sameSite: "none",
+    sameSite: "lax",
   });
 };
 

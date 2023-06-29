@@ -1,5 +1,7 @@
 const urlModel = require("../models/url.models");
 const validUrl = require("valid-url");
+const urlExists = require("url-exists");
+// import urlExist from "url-exist";
 const shortid = require("shortid");
 var QRCode = require("qrcode");
 const { StatusCodes } = require("http-status-codes");
@@ -14,6 +16,17 @@ const createUrl = async (req, res) => {
   if (!validUrl.isUri(baseUrl)) throw new BadRequestError("Invalid base URL");
   const urlCode = shortid.generate();
 
+  // const exist = await urlExist(longUrl);
+  // console.log(exist);
+  await urlExists(longUrl, function (err, exists) {
+    console.log("Step 1");
+    console.log(exists);
+  });
+  // const exists = await urlExists(longUrl);
+  // console.log(exists);
+  // write the above function in await style
+  console.log("Step 2");
+
   console.log(validUrl.isWebUri(longUrl));
   console.log(!validUrl.isWebUri(longUrl));
 
@@ -24,6 +37,7 @@ const createUrl = async (req, res) => {
   if (req.user) {
     userId = req.user.userId || null;
   }
+  // console.log(req.user.userId);
 
   let url = await urlModel.findOne({
     longUrl,
@@ -130,7 +144,7 @@ const redirectUrl = async (req, res) => {
   const url = await urlModel.findOne({ urlCode });
 
   if (url) {
-    console.log("url", url);
+    // console.log("url", url);
     const analytics = {
       ip: req.ip,
       browser: req.headers["user-agent"],
@@ -141,6 +155,7 @@ const redirectUrl = async (req, res) => {
     url.noOfClicks = url.noOfClicks + 1;
     await url.save();
     Cache.redis.set(`url:${url._id}`, JSON.stringify(url));
+    return res.setHeader("Content-Type", "text/html").redirect(url.longUrl);
     return res
       .status(StatusCodes.OK)
       .json({ msg: "redirected", url: url.longUrl });
@@ -149,7 +164,7 @@ const redirectUrl = async (req, res) => {
   const url2 = await urlModel.findOne({ custom: urlCode });
 
   if (url2) {
-    console.log("url2", url2);
+    // console.log("url2", url2);
     const analytics = {
       ip: req.ip,
       browser: req.headers["user-agent"],
@@ -160,6 +175,7 @@ const redirectUrl = async (req, res) => {
     url2.noOfClicks = url2.noOfClicks + 1;
     await url2.save();
     Cache.redis.set(`url:${url2._id}`, JSON.stringify(url2));
+    return res.setHeader("Content-Type", "text/html").redirect(url2.longUrl);
     return res
       .status(StatusCodes.OK)
       .json({ msg: "redirected", url: url2.longUrl });
