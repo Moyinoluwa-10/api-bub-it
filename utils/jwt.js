@@ -20,7 +20,7 @@ const attachCookiesToResponse = ({ res, user, refreshToken }) => {
     httpOnly: true,
     secure: true,
     signed: true,
-    expires: new Date(Date.now() + oneMinute),
+    expires: new Date(Date.now() + oneDay),
     sameSite: "lax",
     domain: ".bub.icu",
   });

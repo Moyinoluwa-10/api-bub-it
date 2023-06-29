@@ -180,12 +180,14 @@ const logout = async (req, res) => {
     expires: new Date(Date.now()),
     secure: true,
     sameSite: "lax",
+    domain: ".bub.icu",
   });
   res.cookie("refreshToken", "logout", {
     httpOnly: true,
     expires: new Date(Date.now()),
     secure: true,
     sameSite: "lax",
+    domain: ".bub.icu",
   });
 
   return res.status(StatusCodes.OK).json({
