@@ -179,13 +179,13 @@ const logout = async (req, res) => {
     httpOnly: true,
     expires: new Date(Date.now()),
     secure: true,
-    sameSite: "none",
+    sameSite: "lax",
   });
   res.cookie("refreshToken", "logout", {
     httpOnly: true,
     expires: new Date(Date.now()),
     secure: true,
-    sameSite: "none",
+    sameSite: "lax",
   });
 
   return res.status(StatusCodes.OK).json({
