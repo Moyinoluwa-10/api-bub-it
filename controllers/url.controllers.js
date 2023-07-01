@@ -11,7 +11,7 @@ const { BASE_URL } = require("../config/config");
 const Cache = require("../cache/redis");
 
 const createUrl = async (req, res) => {
-  const baseUrl = "https://bub.icu";
+  const baseUrl = "https://localhost:5000";
   const { longUrl, custom } = req.body;
   if (!validUrl.isUri(baseUrl)) throw new BadRequestError("Invalid base URL");
   const urlCode = shortid.generate();
@@ -46,7 +46,6 @@ const createUrl = async (req, res) => {
 
   if (url) return res.json({ msg: "ShortURL already created", url });
   let customUrl = null;
-  const qrcode = await QRCode.toDataURL(longUrl);
   const shortUrl = baseUrl + "/" + urlCode;
 
   if (custom) {
@@ -59,7 +58,6 @@ const createUrl = async (req, res) => {
     longUrl,
     shortUrl,
     customUrl,
-    qrcode,
     user: userId,
   });
   await url.save();
@@ -70,6 +68,32 @@ const createUrl = async (req, res) => {
   return res.status(StatusCodes.CREATED).json({
     msg: "ShortURL created successfully",
     url,
+  });
+};
+
+const generateQrcode = async (req, res) => {
+  const { id } = req.params;
+  const url = await urlModel.findOne({ _id: id });
+  if (!url) throw new BadRequestError("ShortURL not found");
+  checkPermissions(req.user, url.user);
+  const qrcode = await QRCode.toDataURL(url.longUrl);
+  url.qrcode = qrcode;
+  await url.save();
+  return res.status(StatusCodes.OK).json({
+    msg: "Qrcode generated successfully",
+    qrcode: qrcode,
+  });
+};
+
+const disableUrl = async (req, res) => {
+  const { id } = req.params;
+  const url = await urlModel.findOne({ _id: id });
+  if (!url) throw new BadRequestError("ShortURL not found");
+  checkPermissions(req.user, url.user);
+  url.active = false;
+  await url.save();
+  return res.status(StatusCodes.OK).json({
+    msg: "ShortURL disabled successfully",
   });
 };
 
@@ -145,6 +169,7 @@ const redirectUrl = async (req, res) => {
 
   if (url) {
     // console.log("url", url);
+    const { platform, browser, os, version } = req.useragent;
     const analytics = {
       ip: req.ip,
       browser: req.headers["user-agent"],

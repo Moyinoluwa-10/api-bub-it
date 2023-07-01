@@ -11,6 +11,7 @@ const {
 } = require("../utils");
 const { ORIGIN, NODE_ENV } = require("../config/config");
 const crypto = require("crypto");
+const cookiesConfig = require("../config/cookies");
 
 const signup = async (req, res) => {
   const { email } = req.body;
@@ -175,20 +176,25 @@ const resetPassword = async (req, res) => {
 const logout = async (req, res) => {
   await Token.findOneAndDelete({ user: req.user.userId });
 
-  res.cookie("accessToken", "logout", {
-    httpOnly: true,
-    expires: new Date(Date.now()),
-    secure: true,
-    sameSite: "lax",
-    domain: ".bub.icu",
-  });
-  res.cookie("refreshToken", "logout", {
-    httpOnly: true,
-    expires: new Date(Date.now()),
-    secure: true,
-    sameSite: "lax",
-    domain: ".bub.icu",
-  });
+  // res.cookie("accessToken", "logout", {
+  //   httpOnly: true,
+  //   expires: new Date(Date.now()),
+  //   secure: true,
+  //   signed: true,
+  //   // sameSite: "lax",
+  //   // domain: ".bub.icu",
+  // });
+  // res.cookie("refreshToken", "logout", {
+  //   httpOnly: true,
+  //   expires: new Date(Date.now()),
+  //   secure: true,
+  //   signed: true,
+  //   // sameSite: "lax",
+  //   // domain: ".bub.icu",
+  // });
+
+  // res.cookie("accessToken", "logout", cookiesConfig(0));
+  // res.cookie("refreshToken", "logout", cookiesConfig(0));
 
   return res.status(StatusCodes.OK).json({
     msg: "User logged out successfully",
