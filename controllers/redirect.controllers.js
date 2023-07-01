@@ -37,7 +37,7 @@ const redirectUrl = async (req, res) => {
     url2.noOfClicks = url2.noOfClicks + 1;
     await url2.save();
     Cache.redis.set(`url:${url2._id}`, JSON.stringify(url2));
-    // return res.setHeader("Content-Type", "text/html").redirect(url2.longUrl);
+    return res.setHeader("Content-Type", "text/html").redirect(url2.longUrl);
     return res
       .status(StatusCodes.OK)
       .json({ msg: "redirected", url: url2.longUrl });

@@ -11,7 +11,7 @@ const { BASE_URL } = require("../config/config");
 const Cache = require("../cache/redis");
 
 const createUrl = async (req, res) => {
-  const baseUrl = "https://localhost:5000";
+  const baseUrl = BASE_URL;
   const { longUrl, custom } = req.body;
   if (!validUrl.isUri(baseUrl)) throw new BadRequestError("Invalid base URL");
   const urlCode = shortid.generate();
@@ -76,12 +76,21 @@ const generateQrcode = async (req, res) => {
   const url = await urlModel.findOne({ _id: id });
   if (!url) throw new BadRequestError("ShortURL not found");
   checkPermissions(req.user, url.user);
+  if (url.qrcode) {
+    return res.status(StatusCodes.OK).json({
+      msg: "Qrcode already generated",
+      qrcode: url.qrcode,
+      url,
+    });
+  }
   const qrcode = await QRCode.toDataURL(url.longUrl);
   url.qrcode = qrcode;
   await url.save();
+  await Cache.redis.setEx(`url:${id}`, 3600, JSON.stringify(url));
   return res.status(StatusCodes.OK).json({
     msg: "Qrcode generated successfully",
     qrcode: qrcode,
+    url,
   });
 };
 
@@ -92,8 +101,24 @@ const disableUrl = async (req, res) => {
   checkPermissions(req.user, url.user);
   url.active = false;
   await url.save();
+  await Cache.redis.setEx(`url:${id}`, 3600, JSON.stringify(url));
   return res.status(StatusCodes.OK).json({
     msg: "ShortURL disabled successfully",
+    url,
+  });
+};
+
+const enableUrl = async (req, res) => {
+  const { id } = req.params;
+  const url = await urlModel.findOne({ _id: id });
+  if (!url) throw new BadRequestError("ShortURL not found");
+  checkPermissions(req.user, url.user);
+  url.active = true;
+  await url.save();
+  await Cache.redis.setEx(`url:${id}`, 3600, JSON.stringify(url));
+  return res.status(StatusCodes.OK).json({
+    msg: "ShortURL disabled successfully",
+    url,
   });
 };
 
@@ -120,14 +145,14 @@ const getAllUrls = async (req, res) => {
 
 const getAUrl = async (req, res) => {
   const { id } = req.params;
-  const cachedUrl = await Cache.redis.get(`url:${id}`);
-  if (cachedUrl) {
-    // console.log("Cache hit");
-    return res.status(StatusCodes.OK).json({
-      msg: "ShortURL fetched successfully",
-      url: JSON.parse(cachedUrl),
-    });
-  }
+  // const cachedUrl = await Cache.redis.get(`url:${id}`);
+  // if (cachedUrl) {
+  //   // console.log("Cache hit");
+  //   return res.status(StatusCodes.OK).json({
+  //     msg: "ShortURL fetched successfully",
+  //     url: JSON.parse(cachedUrl),
+  //   });
+  // }
   // console.log("Cache miss");
   const url = await urlModel.findOne({ _id: id });
   if (!url) throw new BadRequestError("ShortURL not found");
@@ -169,7 +194,7 @@ const redirectUrl = async (req, res) => {
 
   if (url) {
     // console.log("url", url);
-    const { platform, browser, os, version } = req.useragent;
+    // const { platform, browser, os, version } = req.useragent;
     const analytics = {
       ip: req.ip,
       browser: req.headers["user-agent"],
@@ -180,7 +205,7 @@ const redirectUrl = async (req, res) => {
     url.noOfClicks = url.noOfClicks + 1;
     await url.save();
     Cache.redis.set(`url:${url._id}`, JSON.stringify(url));
-    return res.setHeader("Content-Type", "text/html").redirect(url.longUrl);
+    // return res.setHeader("Content-Type", "text/html").redirect(url.longUrl);
     return res
       .status(StatusCodes.OK)
       .json({ msg: "redirected", url: url.longUrl });
@@ -200,7 +225,7 @@ const redirectUrl = async (req, res) => {
     url2.noOfClicks = url2.noOfClicks + 1;
     await url2.save();
     Cache.redis.set(`url:${url2._id}`, JSON.stringify(url2));
-    // return res.setHeader("Content-Type", "text/html").redirect(url2.longUrl);
+    return res.setHeader("Content-Type", "text/html").redirect(url2.longUrl);
     return res
       .status(StatusCodes.OK)
       .json({ msg: "redirected", url: url2.longUrl });
@@ -228,4 +253,7 @@ module.exports = {
   deleteUrl,
   getUserUrls,
   redirectUrl,
+  enableUrl,
+  disableUrl,
+  generateQrcode,
 };

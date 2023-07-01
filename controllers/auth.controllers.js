@@ -193,8 +193,8 @@ const logout = async (req, res) => {
   //   // domain: ".bub.icu",
   // });
 
-  // res.cookie("accessToken", "logout", cookiesConfig(0));
-  // res.cookie("refreshToken", "logout", cookiesConfig(0));
+  res.cookie("accessToken", "logout", cookiesConfig(0));
+  res.cookie("refreshToken", "logout", cookiesConfig(0));
 
   return res.status(StatusCodes.OK).json({
     msg: "User logged out successfully",
