@@ -194,7 +194,9 @@ const redirectUrl = async (req, res) => {
 
   if (url) {
     // console.log("url", url);
-    // const { platform, browser, os, version } = req.useragent;
+    const { platform, browser, os, version } = req.headers["user-agent"];
+    console.log(platform, browser, os, version);
+    console.log(req.headers["user-agent"]);
     const analytics = {
       ip: req.ip,
       browser: req.headers["user-agent"],

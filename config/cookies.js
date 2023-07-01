@@ -6,6 +6,7 @@ const cookiesConfig = (lifetime) => {
     secure: true,
     signed: true,
     expires: new Date(Date.now() + lifetime),
+    sameSite: "none",
   };
 
   if (NODE_ENV === "production") {
