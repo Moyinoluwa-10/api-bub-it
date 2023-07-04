@@ -1,7 +1,6 @@
 const urlModel = require("../models/url.models");
 const validUrl = require("valid-url");
-const urlExists = require("url-exists");
-// import urlExist from "url-exist";
+const urlExists = require("url-exists-async-await");
 const shortid = require("shortid");
 var QRCode = require("qrcode");
 const { StatusCodes } = require("http-status-codes");
@@ -11,35 +10,19 @@ const { BASE_URL, NODE_ENV } = require("../config/config");
 const Cache = require("../cache/redis");
 
 const createUrl = async (req, res) => {
-  const baseUrl = BASE_URL;
   const { longUrl, custom } = req.body;
+  const baseUrl = BASE_URL;
   if (!validUrl.isUri(baseUrl)) throw new BadRequestError("Invalid base URL");
-  const urlCode = shortid.generate();
 
-  // const exist = await urlExist(longUrl);
-  // console.log(exist);
-  // await urlExists(longUrl, function (err, exists) {
-  //   console.log("Step 1");
-  //   console.log(exists);
-  // });
-  // const exists = await urlExists(longUrl);
-  // console.log(exists);
-  // write the above function in await style
-  // console.log("Step 2");
-
-  // console.log(validUrl.isWebUri(longUrl));
-  // console.log(!validUrl.isWebUri(longUrl));
-
-  // console.log(longUrl);
-
-  if (!validUrl.isWebUri(longUrl))
+  const urlExist = await urlExists(longUrl);
+  if (!validUrl.isWebUri(longUrl) || !urlExist)
     throw new BadRequestError("Invalid long URL");
 
+  const urlCode = shortid.generate();
   let userId;
   if (req.user) {
     userId = req.user.userId || null;
   }
-  // console.log(req.user.userId);
 
   let url = await urlModel.findOne({
     longUrl,
@@ -186,7 +169,7 @@ const getUserUrls = async (req, res) => {
   if (NODE_ENV !== "test") {
     const cachedUrl = await Cache.redis.get(`url:user:${req.user.userId}`);
     if (cachedUrl) {
-      console.log("Cache hit");
+      // console.log("Cache hit");
       return res.status(StatusCodes.OK).json({
         msg: "All shortURLs fetched successfully",
         urls: JSON.parse(cachedUrl),
@@ -210,54 +193,6 @@ const getUserUrls = async (req, res) => {
   });
 };
 
-const redirectUrl = async (req, res) => {
-  const { urlCode } = req.params;
-  const url = await urlModel.findOne({ urlCode });
-
-  if (url) {
-    // console.log("url", url);
-    const { platform, browser, os, version } = req.headers["user-agent"];
-    console.log(platform, browser, os, version);
-    console.log(req.headers["user-agent"]);
-    const analytics = {
-      ip: req.ip,
-      browser: req.headers["user-agent"],
-      date: new Date(),
-    };
-
-    url.analytics.unshift(analytics);
-    url.noOfClicks = url.noOfClicks + 1;
-    await url.save();
-    Cache.redis.set(`url:${url._id}`, JSON.stringify(url));
-    // return res.setHeader("Content-Type", "text/html").redirect(url.longUrl);
-    return res
-      .status(StatusCodes.OK)
-      .json({ msg: "redirected", url: url.longUrl });
-  }
-
-  const url2 = await urlModel.findOne({ custom: urlCode });
-
-  if (url2) {
-    // console.log("url2", url2);
-    const analytics = {
-      ip: req.ip,
-      browser: req.headers["user-agent"],
-      date: new Date(),
-    };
-
-    url2.analytics.unshift(analytics);
-    url2.noOfClicks = url2.noOfClicks + 1;
-    await url2.save();
-    Cache.redis.set(`url:${url2._id}`, JSON.stringify(url2));
-    return res.setHeader("Content-Type", "text/html").redirect(url2.longUrl);
-    return res
-      .status(StatusCodes.OK)
-      .json({ msg: "redirected", url: url2.longUrl });
-  }
-
-  throw new BadRequestError("ShortURL not found");
-};
-
 const deleteUrl = async (req, res) => {
   const { id } = req.params;
   const url = await urlModel.findOne({ _id: id });
@@ -278,7 +213,6 @@ module.exports = {
   getAUrl,
   deleteUrl,
   getUserUrls,
-  redirectUrl,
   enableUrl,
   disableUrl,
   generateQrcode,

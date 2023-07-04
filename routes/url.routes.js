@@ -5,7 +5,6 @@ const {
   getAUrl,
   getAllUrls,
   getUserUrls,
-  redirectUrl,
   enableUrl,
   disableUrl,
   generateQrcode,
@@ -21,7 +20,6 @@ const router = express.Router();
 router.post("/shorten", optionalAuthentication, createUrl);
 router.get("/all", authenticateUser, authorizePermissions("admin"), getAllUrls);
 router.get("/user", authenticateUser, getUserUrls);
-router.get("/redirect/:urlCode", redirectUrl);
 router.get("/disable/:id", authenticateUser, disableUrl);
 router.get("/enable/:id", authenticateUser, enableUrl);
 router.get("/generate/:id", authenticateUser, generateQrcode);

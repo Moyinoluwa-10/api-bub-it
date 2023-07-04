@@ -33,8 +33,7 @@
     "qrcode": "^1.5.3",
     "redis": "^4.6.7",
     "shortid": "^2.2.16",
-    "url-exist": "^3.0.1",
-    "url-exists": "^1.0.3",
+    "url-exists-async-await": "^1.0.0",
     "valid-url": "^1.0.9",
     "xss-clean": "^0.1.4"
   },
