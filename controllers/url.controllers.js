@@ -203,6 +203,7 @@ const deleteUrl = async (req, res) => {
   await url.remove();
   if (NODE_ENV !== "test") {
     await Cache.redis.del(`url:${id}`);
+    await Cache.redis.del(`url:user:${req.user.userId}`);
   }
   return res.status(StatusCodes.OK).json({
     msg: "ShortURL deleted successfully",
