@@ -7,7 +7,7 @@ var QRCode = require("qrcode");
 const { StatusCodes } = require("http-status-codes");
 const { BadRequestError } = require("../errors");
 const { checkPermissions } = require("../utils");
-const { BASE_URL } = require("../config/config");
+const { BASE_URL, NODE_ENV } = require("../config/config");
 const Cache = require("../cache/redis");
 
 const createUrl = async (req, res) => {
@@ -63,10 +63,12 @@ const createUrl = async (req, res) => {
     user: userId,
   });
   await url.save();
-  // if (req.user) {
-  //   await Cache.redis.del(`url:user:${req.user.userId}`);
-  // }
-  // await Cache.redis.del("urls");
+  if (NODE_ENV !== "test") {
+    if (req.user) {
+      await Cache.redis.del(`url:user:${req.user.userId}`);
+    }
+    await Cache.redis.del("urls");
+  }
   return res.status(StatusCodes.CREATED).json({
     msg: "ShortURL created successfully",
     url,
@@ -88,7 +90,9 @@ const generateQrcode = async (req, res) => {
   const qrcode = await QRCode.toDataURL(url.longUrl);
   url.qrcode = qrcode;
   await url.save();
-  // await Cache.redis.setEx(`url:${id}`, 3600, JSON.stringify(url));
+  if (NODE_ENV !== "test") {
+    await Cache.redis.setEx(`url:${id}`, 3600, JSON.stringify(url));
+  }
   return res.status(StatusCodes.OK).json({
     msg: "Qrcode generated successfully",
     qrcode: qrcode,
@@ -103,7 +107,9 @@ const disableUrl = async (req, res) => {
   checkPermissions(req.user, url.user);
   url.active = false;
   await url.save();
-  // await Cache.redis.setEx(`url:${id}`, 3600, JSON.stringify(url));
+  if (NODE_ENV !== "test") {
+    await Cache.redis.setEx(`url:${id}`, 3600, JSON.stringify(url));
+  }
   return res.status(StatusCodes.OK).json({
     msg: "ShortURL disabled successfully",
     url,
@@ -117,7 +123,9 @@ const enableUrl = async (req, res) => {
   checkPermissions(req.user, url.user);
   url.active = true;
   await url.save();
-  // await Cache.redis.setEx(`url:${id}`, 3600, JSON.stringify(url));
+  if (NODE_ENV !== "test") {
+    await Cache.redis.setEx(`url:${id}`, 3600, JSON.stringify(url));
+  }
   return res.status(StatusCodes.OK).json({
     msg: "ShortURL enabled successfully",
     url,
@@ -125,19 +133,23 @@ const enableUrl = async (req, res) => {
 };
 
 const getAllUrls = async (req, res) => {
-  // const cachedUrls = await Cache.redis.get("urls");
-  // if (cachedUrls) {
-  //   // console.log("Cache hit");
-  //   return res.status(StatusCodes.OK).json({
-  //     msg: "All shortURLs fetched successfully",
-  //     urls: JSON.parse(cachedUrls),
-  //     count: JSON.parse(cachedUrls).length,
-  //   });
-  // }
+  if (NODE_ENV !== "test") {
+    const cachedUrls = await Cache.redis.get("urls");
+    if (cachedUrls) {
+      // console.log("Cache hit");
+      return res.status(StatusCodes.OK).json({
+        msg: "All shortURLs fetched successfully",
+        urls: JSON.parse(cachedUrls),
+        count: JSON.parse(cachedUrls).length,
+      });
+    }
+  }
   // console.log("Cache miss");
 
   const urls = await urlModel.find();
-  // await Cache.redis.setEx("urls", 3600, JSON.stringify(urls));
+  if (NODE_ENV !== "test") {
+    await Cache.redis.setEx("urls", 3600, JSON.stringify(urls));
+  }
   return res.status(StatusCodes.OK).json({
     msg: "All shortURLs fetched successfully",
     urls,
@@ -147,19 +159,23 @@ const getAllUrls = async (req, res) => {
 
 const getAUrl = async (req, res) => {
   const { id } = req.params;
-  // const cachedUrl = await Cache.redis.get(`url:${id}`);
-  // if (cachedUrl) {
-  //   // console.log("Cache hit");
-  //   return res.status(StatusCodes.OK).json({
-  //     msg: "ShortURL fetched successfully",
-  //     url: JSON.parse(cachedUrl),
-  //   });
-  // }
+  if (NODE_ENV !== "test") {
+    const cachedUrl = await Cache.redis.get(`url:${id}`);
+    if (cachedUrl) {
+      // console.log("Cache hit");
+      return res.status(StatusCodes.OK).json({
+        msg: "ShortURL fetched successfully",
+        url: JSON.parse(cachedUrl),
+      });
+    }
+  }
   // console.log("Cache miss");
   const url = await urlModel.findOne({ _id: id });
   if (!url) throw new BadRequestError("ShortURL not found");
   checkPermissions(req.user, url.user);
-  // await Cache.redis.setEx(`url:${id}`, 3600, JSON.stringify(url));
+  if (NODE_ENV !== "test") {
+    await Cache.redis.setEx(`url:${id}`, 3600, JSON.stringify(url));
+  }
   return res.status(StatusCodes.OK).json({
     msg: "ShortURL fetched successfully",
     url,
@@ -167,22 +183,26 @@ const getAUrl = async (req, res) => {
 };
 
 const getUserUrls = async (req, res) => {
-  // const cachedUrl = await Cache.redis.get(`url:user:${req.user.userId}`);
-  // if (cachedUrl) {
-  //   console.log("Cache hit");
-  //   return res.status(StatusCodes.OK).json({
-  //     msg: "All shortURLs fetched successfully",
-  //     urls: JSON.parse(cachedUrl),
-  //     count: JSON.parse(cachedUrl).length,
-  //   });
-  // }
+  if (NODE_ENV !== "test") {
+    const cachedUrl = await Cache.redis.get(`url:user:${req.user.userId}`);
+    if (cachedUrl) {
+      console.log("Cache hit");
+      return res.status(StatusCodes.OK).json({
+        msg: "All shortURLs fetched successfully",
+        urls: JSON.parse(cachedUrl),
+        count: JSON.parse(cachedUrl).length,
+      });
+    }
+  }
   // console.log("Cache miss");
   const urls = await urlModel.find({ user: req.user.userId });
-  // await Cache.redis.setEx(
-  //   `url:user:${req.user.userId}`,
-  //   3600,
-  //   JSON.stringify(urls)
-  // );
+  if (NODE_ENV !== "test") {
+    await Cache.redis.setEx(
+      `url:user:${req.user.userId}`,
+      3600,
+      JSON.stringify(urls)
+    );
+  }
   return res.status(StatusCodes.OK).json({
     msg: "All shortURLs fetched successfully",
     urls,
@@ -244,7 +264,9 @@ const deleteUrl = async (req, res) => {
   if (!url) throw new BadRequestError("ShortURL not found");
   checkPermissions(req.user, url.user);
   await url.remove();
-  // await Cache.redis.del(`url:${id}`);
+  if (NODE_ENV !== "test") {
+    await Cache.redis.del(`url:${id}`);
+  }
   return res.status(StatusCodes.OK).json({
     msg: "ShortURL deleted successfully",
   });
