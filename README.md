@@ -99,7 +99,7 @@ npm run test
 - https://bubs.live
 ### Documentation
 
-- You can check the postman documentation [here](https://documenter.getpostman.com/view/23165359/2s8Z73yWgj)
+- You can check the postman documentation [here](https://documenter.getpostman.com/view/27077924/2s93zE2zcn)
 - You can check the documentation produced using ```docgen``` [here](https://bubs.live/api-docs)
 
 
