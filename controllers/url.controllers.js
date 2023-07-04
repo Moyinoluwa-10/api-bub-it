@@ -129,7 +129,7 @@ const getAllUrls = async (req, res) => {
   }
   // console.log("Cache miss");
 
-  const urls = await urlModel.find();
+  const urls = await urlModel.find().sort("-createdAt");
   if (NODE_ENV !== "test") {
     await Cache.redis.setEx("urls", 3600, JSON.stringify(urls));
   }
@@ -178,7 +178,9 @@ const getUserUrls = async (req, res) => {
     }
   }
   // console.log("Cache miss");
-  const urls = await urlModel.find({ user: req.user.userId });
+  const urls = await urlModel
+    .find({ user: req.user.userId })
+    .sort("-createdAt");
   if (NODE_ENV !== "test") {
     await Cache.redis.setEx(
       `url:user:${req.user.userId}`,
