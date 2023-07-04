@@ -15,22 +15,22 @@
 
 <div>
   <p align="center">
-    <a href="https://github.com/moyinoluwa-10/url-shortener-api#readme"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/moyinoluwa-10/api-bub-it#readme"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://api-shortener.vercel.app/">Demo</a>
+    <a href="https://bubs.live/">Demo</a>
     ·
-    <a href="https://github.com/moyinoluwa-10/url-shortener-api/issues">Report Bug</a>
+    <a href="https://github.com/moyinoluwa-10/api-bub-it/issues">Report Bug</a>
     ·
-    <a href="https://github.com/moyinoluwa-10/url-shortener-api/issues">Request Feature</a>
+    <a href="https://github.com/moyinoluwa-10/api-bub-it/issues">Request Feature</a>
   </p>
 </div>
 
 <!-- About the API -->
 
-## Shortener
+## Bub It API
 
-&mdash; a URL Shortener API built by <a href="https://www.github.com/moyinoluwa-10">moyinoluwa</a>.
+&mdash; A URL Shortener API built by <a href="https://www.github.com/moyinoluwa-10">Moyinoluwa</a>.
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
@@ -59,7 +59,7 @@
 #### Clone this repo
 
 ```sh
-git clone https://github.com/moyinoluwa-10/url-shortener-api.git
+git clone https://github.com/moyinoluwa-10/api-bub-it.git
 ```
 
 #### Install project dependencies
@@ -74,19 +74,19 @@ or
 yarn install
 ```
 
-#### Update .env with [example.env](https://github.com/moyinoluwa-10/url-shortener-api/blob/main/example.env)
+#### Update .env with [example.env](https://github.com/moyinoluwa-10/api-bub-it/blob/main/example.env)
 <br />
 
 #### Run a development server
 
 ```sh
-npm run devStart
+npm run dev
 ```
 
 or
 
 ```sh
-yarn run devStart
+yarn run dev
 ```
 
 #### For testing, run
@@ -195,7 +195,7 @@ While building this project, I learned about:
 
 ## License
 
-Distributed under the MIT License. See <a href="https://github.com/moyinoluwa-10/url-shortener-api/blob/main/LICENSE.md">LICENSE</a> for more information.
+Distributed under the MIT License. See <a href="https://github.com/moyinoluwa-10/api-bub-it/blob/main/LICENSE.md">LICENSE</a> for more information.
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
@@ -208,7 +208,7 @@ Distributed under the MIT License. See <a href="https://github.com/moyinoluwa-10
 - Twitter - [@rotii_mii](https://twitter.com/rotii_mii)
 - Email - [moyinadelowo@gmail.com](mailto:moyinadelowo@gmail.com)
 
-Project Link: [URL-Shortener](https://github.com/moyinoluwa-10/url-shortener-api)
+Project Link: [URL-Shortener](https://github.com/moyinoluwa-10/api-bub-it)
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
@@ -227,16 +227,16 @@ This project was made possible by:
 
 <!-- Markdown Links & Images -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/moyinoluwa-10/url-shortener-api.svg?style=for-the-badge
-[contributors-url]: https://github.com/moyinoluwa-10/url-shortener-api/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/moyinoluwa-10/url-shortener-api.svg?style=for-the-badge
-[forks-url]: https://github.com/moyinoluwa-10/url-shortener-api/network/members
-[stars-shield]: https://img.shields.io/github/stars/moyinoluwa-10/url-shortener-api.svg?style=for-the-badge
-[stars-url]: https://github.com/moyinoluwa-10/url-shortener-api/stargazers
-[issues-shield]: https://img.shields.io/github/issues/moyinoluwa-10/url-shortener-api.svg?style=for-the-badge
-[issues-url]: https://github.com/moyinoluwa-10/url-shortener-api/issues
-[license-shield]: https://img.shields.io/github/license/moyinoluwa-10/url-shortener-api.svg?style=for-the-badge
-[license-url]: https://github.com/moyinoluwa-10/url-shortener-api/blob/main/LICENSE.md
+[contributors-shield]: https://img.shields.io/github/contributors/moyinoluwa-10/api-bub-it.svg?style=for-the-badge
+[contributors-url]: https://github.com/moyinoluwa-10/api-bub-it/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/moyinoluwa-10/api-bub-it.svg?style=for-the-badge
+[forks-url]: https://github.com/moyinoluwa-10/api-bub-it/network/members
+[stars-shield]: https://img.shields.io/github/stars/moyinoluwa-10/api-bub-it.svg?style=for-the-badge
+[stars-url]: https://github.com/moyinoluwa-10/api-bub-it/stargazers
+[issues-shield]: https://img.shields.io/github/issues/moyinoluwa-10/api-bub-it.svg?style=for-the-badge
+[issues-url]: https://github.com/moyinoluwa-10/api-bub-it/issues
+[license-shield]: https://img.shields.io/github/license/moyinoluwa-10/api-bub-it.svg?style=for-the-badge
+[license-url]: https://github.com/moyinoluwa-10/api-bub-it/blob/main/LICENSE.md
 [twitter-shield]: https://img.shields.io/badge/-@rotii_mii-1ca0f1?style=for-the-badge&logo=twitter&logoColor=white&link=https://twitter.com/rotii_mii
 [twitter-url]: https://twitter.com/rotii_mii
 [javascript]: https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1C

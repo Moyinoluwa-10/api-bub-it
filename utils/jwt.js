@@ -35,7 +35,7 @@ const attachCookiesToResponse = ({ res, user, refreshToken }) => {
   //   domain: ".bub.icu",
   // });
 
-  console.log(cookiesConfig(oneDay));
+  // console.log(cookiesConfig(oneDay));
 
   res.cookie("accessToken", accessTokenJWT, cookiesConfig(oneDay));
   res.cookie("refreshToken", refreshTokenJWT, cookiesConfig(longerExp));
