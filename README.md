@@ -30,11 +30,13 @@
 
 ## Bub It API
 
-&mdash; A URL Shortener API built by <a href="https://www.github.com/moyinoluwa-10">Moyinoluwa</a>.
+&mdash; A URL Shortener API built by <a href="https://www.github.com/moyinoluwa-10">Moyinoluwa</a> for [Bub it](https://bub.icu/)
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
-### Built With:
+---
+
+### Technologies
 
 <div align="center">
 
@@ -42,12 +44,13 @@
 ![Node.js][node]
 ![Express.js][express]
 ![MongoDB][mongodb]
+![Git][git]
 
 </div>
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
-****---
+---
 
 ## Development
 
@@ -56,124 +59,49 @@
 - [Node.js](https://nodejs.org/en/download/)
 - [MongoDB](https://www.mongodb.com/docs/manual/installation/)
 
-#### Clone this repo
+### Installation
+First, you need to clone the repository into your local machine
 
 ```sh
 git clone https://github.com/moyinoluwa-10/api-bub-it.git
 ```
-
-#### Install project dependencies
+Then, you need to install the dependencies.
 
 ```sh
 npm install
 ```
 
-or
+
+Then,  you need to create a ```.env``` in root folder and update ```.env``` with [example.env](./example.env)
 
 ```sh
-yarn install
+touch .env
 ```
 
-#### Update .env with [example.env](https://github.com/moyinoluwa-10/api-bub-it/blob/main/example.env)
-<br />
-
-#### Run a development server
+Finally, you need to run the server.
 
 ```sh
 npm run dev
 ```
 
-or
 
-```sh
-yarn run dev
-```
-
-#### For testing, run
+#### To run the integration tests
 
 ```sh
 npm run test
 ```
 
-or
-
-```sh
-yarn run test
-```
-
-### Model
-
-#### Url
-
-| field     | data_type     | constraints      |
-| --------- | ------------- | ---------------- |
-| longUrl | string        | required  |
-| shortUrl | string        | required         |
-| urlCode  | string        | required         |
-
-
-<p align="right"><a href="#readme-top">back to top</a></p>
-
 ---
-
 ## Usage
-
-### Documentation
-
-- You can use the [documentation](https://documenter.getpostman.com/view/23165359/2s8Z73yWgj)
 
 ### Base URL
 
-- https://api-shortener.vercel.app
+- https://bubs.live
+### Documentation
 
-### Creating a shortURL
+- You can check the postman documentation [here](https://documenter.getpostman.com/view/23165359/2s8Z73yWgj)
+- You can check the documentation produced using ```docgen``` [here](https://bubs.live/api-docs)
 
-- Route: /api/v0/url/shorten
-- Method: POST
-
-:point_down: Body
-
-```json
-{
-  "longUrl": "https://example.com"
-}
-```
-
-:point_down: Response
-
-```json
-{
-    "status": true,
-    "message": "ShortURL created successfully",
-    "url": {
-        "urlCode": "tYnA1ERAR",
-        "longUrl": "https://example.com",
-        "shortUrl": "https://api-shortener.vercel.app/tYnA1ERAR",
-        "createdAt": "Fri Jan 06 2023 08:06:19 GMT+0000 (Coordinated Universal Time)",
-        "_id": "63b7d67bcd7ea040027512ec",
-        "__v": 0
-    }
-}
-```
-
-or
-
-```json
-{
-    "status": true,
-    "message": "ShortURL already created",
-    "url": {
-        "_id": "63b7d67bcd7ea040027512ec",
-        "urlCode": "tYnA1ERAR",
-        "longUrl": "https://example.com",
-        "shortUrl": "https://api-shortener.vercel.app/tYnA1ERAR",
-        "createdAt": "Fri Jan 06 2023 08:06:19 GMT+0000 (Coordinated Universal Time)",
-        "__v": 0
-    }
-}
-```
-
-<p align="right"><a href="#readme-top">back to top</a></p>
 
 ---
 
@@ -208,24 +136,12 @@ Distributed under the MIT License. See <a href="https://github.com/moyinoluwa-10
 - Twitter - [@rotii_mii](https://twitter.com/rotii_mii)
 - Email - [moyinadelowo@gmail.com](mailto:moyinadelowo@gmail.com)
 
-Project Link: [URL-Shortener](https://github.com/moyinoluwa-10/api-bub-it)
+Project Link: [Bub it API](https://github.com/moyinoluwa-10/api-bub-it)
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
----
 
-<!-- Acknowledgements -->
-
-## Acknowledgements
-
-This project was made possible by:
-
-- [Tobisupreme Blogolicious README Template](https://github.com/tobisupreme/blogolicious#readme)
-
-
-<p align="right"><a href="#readme-top">back to top</a></p>
-
-<!-- Markdown Links & Images -->
+<!-- MARKDOWN LINKS & IMAGES -->
 
 [contributors-shield]: https://img.shields.io/github/contributors/moyinoluwa-10/api-bub-it.svg?style=for-the-badge
 [contributors-url]: https://github.com/moyinoluwa-10/api-bub-it/graphs/contributors
@@ -243,3 +159,4 @@ This project was made possible by:
 [node]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
 [express]: https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB
 [mongodb]: https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white
+[git]: https://img.shields.io/badge/Git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white
