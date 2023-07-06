@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "portfolio_backend",
+    "name": "bub-it-api",
     "builds": [
         {
             "src": "index.js",
