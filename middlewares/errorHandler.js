@@ -1,7 +1,9 @@
 const { StatusCodes } = require("http-status-codes");
+const logger = require("../logging/winston-logger");
 
 const errorHandler = (err, req, res, next) => {
   // console.log(err);
+  logger.error(err);
   let customError = {
     statusCode: err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,
     msg: err.message || "Something went wrong try again later",

@@ -1,9 +1,5 @@
 const winston = require("winston");
-
-const { combine, timestamp, label, printf } = winston.format;
-const myFormat = printf(({ level, message, label, timestamp }) => {
-  return `${timestamp} [${label}] ${level}: ${message}`;
-});
+const { combine, timestamp, prettyPrint } = winston.format;
 
 const options = {
   info: {
@@ -25,20 +21,10 @@ const options = {
   },
 };
 
-// const { combine, timestamp, label, prettyPrint } = winston.format;
 const logger = winston.createLogger({
   level: "info",
   levels: winston.config.npm.levels,
-  // format: combine(winston.format.json()),
-  format: combine(winston.format.colorize(), winston.format.json()),
-  // format: combine(winston.format.colorize(), label(), timestamp(), myFormat),
-  // format: combine(
-  // winston.format.colorize(),
-  //   label(),
-  //   timestamp(),
-  //   prettyPrint(),
-  //   winston.format.colorize()
-  // ),
+  format: combine(winston.format.colorize(), timestamp(), prettyPrint()),
   defaultMeta: { service: "user-service" },
   transports: [
     new winston.transports.File(options.error),
@@ -53,10 +39,6 @@ const logger = winston.createLogger({
   exitOnError: false,
 });
 
-//
-// If we're not in production then log to the `console` with the format:
-// `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
-//
 if (process.env.NODE_ENV !== "production") {
   logger.add(new winston.transports.Console(options.console));
 }

@@ -18,7 +18,7 @@ const path = require("path");
 const notFound = require("./middlewares/notFound");
 const errorHandler = require("./middlewares/errorHandler");
 const logger = require("./logging/winston-logger");
-const httpLogger = require("./logging/httpLogger");
+const httpLogger = require("./logging/http-logger");
 
 // routes
 const authRoutes = require("./routes/auth.routes");
@@ -67,9 +67,5 @@ app.use("/", redirectRoutes);
 // other middlewares
 app.use(notFound);
 app.use(errorHandler);
-
-logger.info("App started");
-logger.error("App started");
-logger.debug("App started");
 
 module.exports = app;
