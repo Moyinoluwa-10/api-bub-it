@@ -27,10 +27,7 @@ const logger = winston.createLogger({
   levels: winston.config.npm.levels,
   format: combine(winston.format.colorize(), timestamp(), prettyPrint(), ms()),
   defaultMeta: { service: "user-service" },
-  transports: [
-    new winston.transports.File(options.error),
-    new winston.transports.File(options.info),
-  ],
+  transports: [],
   exceptionHandlers: [
     new winston.transports.File({ filename: "logs/exceptions.log" }),
   ],
@@ -54,6 +51,8 @@ if (process.env.NODE_ENV === "production") {
 
 if (process.env.NODE_ENV !== "production") {
   logger.add(new winston.transports.Console(options.console));
+  logger.add(new winston.transports.File(options.error));
+  logger.add(new winston.transports.File(options.info));
 }
 
 // querying winston
