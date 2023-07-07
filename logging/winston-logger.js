@@ -6,15 +6,13 @@ const { combine, timestamp, prettyPrint, ms } = winston.format;
 const options = {
   info: {
     level: "info",
-    filename: "./logs/error.log",
-    handleExceptions: true,
+    filename: "./logs/combined.log",
     maxsize: 5242880, // 5MB
     maxFiles: 5,
   },
   error: {
-    level: "info",
-    filename: "./logs/combined.log",
-    handleExceptions: true,
+    level: "error",
+    filename: "./logs/error.log",
     maxsize: 5242880, // 5MB
     maxFiles: 5,
   },
@@ -24,21 +22,21 @@ const options = {
     format: combine(winston.format.splat(), winston.format.simple()),
   },
   loggly: {
-    level: "debug",
+    level: "info",
     inputToken: "3448bd64-ea55-4a26-a505-6a24cdae39b5",
     subdomain: "devmo",
     tags: ["bub-it"],
     json: true,
   },
   logglyException: {
-    level: "debug",
+    level: "info",
     inputToken: "3448bd64-ea55-4a26-a505-6a24cdae39b5",
     subdomain: "devmo",
     tags: ["bub-it", "exception-bub-it"],
     json: true,
   },
   logglyRejection: {
-    level: "debug",
+    level: "info",
     inputToken: "3448bd64-ea55-4a26-a505-6a24cdae39b5",
     subdomain: "devmo",
     tags: ["bub-it", "rejection-bub-it"],
