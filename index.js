@@ -11,11 +11,11 @@ const start = async () => {
     await connectToMongoDB(MONGODB_URI);
     app.listen(PORT, () => {
       logger.info(`server is listening on http://localhost:${PORT}`);
-      console.log(`server is listening on https://localhost:${PORT}`);
+      // console.log(`server is listening on https://localhost:${PORT}`);
     });
   } catch (error) {
     logger.error(error);
-    console.log(error);
+    // console.log(error);
   }
 };
 

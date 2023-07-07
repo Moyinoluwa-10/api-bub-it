@@ -22,16 +22,16 @@ class Cache {
 
       this.redis.on("connect", () => {
         logger.info("Redis connected");
-        console.log("Redis connected");
+        // console.log("Redis connected");
       });
 
       this.redis.on("error", () => {
         logger.error("Redis connection error");
-        console.log("Redis connection error");
+        // console.log("Redis connection error");
       });
     } catch (error) {
       logger.error(error);
-      console.log(error);
+      // console.log(error);
     }
   }
 }

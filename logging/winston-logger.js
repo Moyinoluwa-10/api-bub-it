@@ -1,4 +1,5 @@
 const winston = require("winston");
+const { NODE_ENV } = require("../config/config");
 require("winston-loggly-bulk");
 const { combine, timestamp, prettyPrint, ms } = winston.format;
 
@@ -54,7 +55,7 @@ const logger = winston.createLogger({
   exitOnError: false,
 });
 
-if (process.env.NODE_ENV === "production") {
+if (NODE_ENV === "production") {
   logger.add(new winston.transports.Loggly(options.loggly));
   logger.exceptions.handle(
     new winston.transports.Loggly(options.logglyException)
@@ -64,7 +65,7 @@ if (process.env.NODE_ENV === "production") {
   );
 }
 
-if (process.env.NODE_ENV !== "production") {
+if (NODE_ENV !== "production") {
   logger.add(new winston.transports.Console(options.console));
   logger.add(new winston.transports.File(options.error));
   logger.add(new winston.transports.File(options.info));
