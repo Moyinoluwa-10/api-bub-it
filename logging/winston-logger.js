@@ -1,5 +1,5 @@
 const winston = require("winston");
-const { combine, timestamp, prettyPrint } = winston.format;
+const { combine, timestamp, prettyPrint, ms } = winston.format;
 
 const options = {
   info: {
@@ -17,14 +17,14 @@ const options = {
   console: {
     level: "debug",
     handleExceptions: true,
-    format: winston.format.simple(),
+    format: combine(winston.format.splat(), winston.format.simple()),
   },
 };
 
 const logger = winston.createLogger({
   level: "info",
   levels: winston.config.npm.levels,
-  format: combine(winston.format.colorize(), timestamp(), prettyPrint()),
+  format: combine(winston.format.colorize(), timestamp(), prettyPrint(), ms()),
   defaultMeta: { service: "user-service" },
   transports: [
     new winston.transports.File(options.error),

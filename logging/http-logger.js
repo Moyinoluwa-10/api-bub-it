@@ -8,13 +8,28 @@ const format = json({
   status: ":status",
   contentLength: ":res[content-length]",
   responseTime: ":response-time",
+  userAgent: ":user-agent",
+  referrer: ":referrer",
+  remoteAddress: ":remote-addr",
+  remoteUser: ":remote-user",
+  http: "HTTP/:http-version",
 });
 
 const httpLogger = morgan(format, {
   stream: {
     write: (message) => {
-      const { method, url, status, contentLength, responseTime } =
-        JSON.parse(message);
+      const {
+        method,
+        url,
+        status,
+        contentLength,
+        responseTime,
+        userAgent,
+        referrer,
+        remoteAddress,
+        remoteUser,
+        http,
+      } = JSON.parse(message);
 
       logger.info("HTTP Access Log", {
         timestamp: new Date().toString(),
@@ -23,6 +38,11 @@ const httpLogger = morgan(format, {
         status: Number(status),
         contentLength,
         responseTime: Number(responseTime),
+        userAgent,
+        referrer,
+        remoteAddress,
+        remoteUser,
+        http,
       });
     },
   },
