@@ -17,7 +17,8 @@ const path = require("path");
 // middlewares
 const notFound = require("./middlewares/notFound");
 const errorHandler = require("./middlewares/errorHandler");
-const logger = require("./middlewares/winston-logger");
+const logger = require("./logging/winston-logger");
+const httpLogger = require("./logging/httpLogger");
 
 // routes
 const authRoutes = require("./routes/auth.routes");
@@ -47,6 +48,7 @@ app.use(helmet());
 app.use(xss());
 app.use(mongoSanitize());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(httpLogger);
 
 app.get("/", (req, res) => {
   res.send('<h1>Bub API</h1><a href="/api-docs">Documentation</a>');
@@ -68,5 +70,6 @@ app.use(errorHandler);
 
 logger.info("App started");
 logger.error("App started");
+logger.debug("App started");
 
 module.exports = app;

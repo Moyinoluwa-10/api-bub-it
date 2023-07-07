@@ -5,10 +5,31 @@ const myFormat = printf(({ level, message, label, timestamp }) => {
   return `${timestamp} [${label}] ${level}: ${message}`;
 });
 
+const options = {
+  info: {
+    level: "info",
+    filename: "./logs/error.log",
+    maxsize: 5242880, // 5MB
+    maxFiles: 5,
+  },
+  error: {
+    level: "info",
+    filename: "./logs/combined.log",
+    maxsize: 5242880, // 5MB
+    maxFiles: 5,
+  },
+  console: {
+    level: "debug",
+    handleExceptions: true,
+    format: winston.format.simple(),
+  },
+};
+
 // const { combine, timestamp, label, prettyPrint } = winston.format;
 const logger = winston.createLogger({
   level: "info",
   levels: winston.config.npm.levels,
+  // format: combine(winston.format.json()),
   format: combine(winston.format.colorize(), winston.format.json()),
   // format: combine(winston.format.colorize(), label(), timestamp(), myFormat),
   // format: combine(
@@ -20,12 +41,8 @@ const logger = winston.createLogger({
   // ),
   defaultMeta: { service: "user-service" },
   transports: [
-    //
-    // - Write all logs with importance level of `error` or less to `error.log`
-    // - Write all logs with importance level of `info` or less to `combined.log`
-    //
-    new winston.transports.File({ filename: "logs/error.log", level: "error" }),
-    new winston.transports.File({ filename: "logs/combined.log" }),
+    new winston.transports.File(options.error),
+    new winston.transports.File(options.info),
   ],
   exceptionHandlers: [
     new winston.transports.File({ filename: "logs/exceptions.log" }),
@@ -41,12 +58,7 @@ const logger = winston.createLogger({
 // `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
 //
 if (process.env.NODE_ENV !== "production") {
-  logger.add(
-    // new winston.transports.Console()
-    new winston.transports.Console({
-      format: winston.format.simple(),
-    })
-  );
+  logger.add(new winston.transports.Console(options.console));
 }
 
 // querying winston
