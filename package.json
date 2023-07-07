@@ -38,6 +38,7 @@
     "url-exists-async-await": "^1.0.0",
     "valid-url": "^1.0.9",
     "winston": "^3.9.0",
+    "winston-loggly-bulk": "^3.2.1",
     "xss-clean": "^0.1.4"
   },
   "devDependencies": {

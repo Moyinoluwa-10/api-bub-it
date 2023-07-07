@@ -1,4 +1,5 @@
 const winston = require("winston");
+require("winston-loggly-bulk");
 const { combine, timestamp, prettyPrint, ms } = winston.format;
 
 const options = {
@@ -38,6 +39,18 @@ const logger = winston.createLogger({
   ],
   exitOnError: false,
 });
+
+if (process.env.NODE_ENV === "production") {
+  logger.add(
+    new winston.transports.Loggly({
+      level: "debug",
+      inputToken: "3448bd64-ea55-4a26-a505-6a24cdae39b5",
+      subdomain: "devmo",
+      tags: ["bub-it"],
+      json: true,
+    })
+  );
+}
 
 if (process.env.NODE_ENV !== "production") {
   logger.add(new winston.transports.Console(options.console));
