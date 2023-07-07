@@ -6,12 +6,14 @@ const options = {
   info: {
     level: "info",
     filename: "./logs/error.log",
+    handleExceptions: true,
     maxsize: 5242880, // 5MB
     maxFiles: 5,
   },
   error: {
     level: "info",
     filename: "./logs/combined.log",
+    handleExceptions: true,
     maxsize: 5242880, // 5MB
     maxFiles: 5,
   },
@@ -28,12 +30,12 @@ const logger = winston.createLogger({
   format: combine(winston.format.colorize(), timestamp(), prettyPrint(), ms()),
   defaultMeta: { service: "user-service" },
   transports: [],
-  exceptionHandlers: [
-    new winston.transports.File({ filename: "logs/exceptions.log" }),
-  ],
-  rejectionHandlers: [
-    new winston.transports.File({ filename: "logs/rejections.log" }),
-  ],
+  // exceptionHandlers: [
+  //   new winston.transports.File({ filename: "logs/exceptions.log" }),
+  // ],
+  // rejectionHandlers: [
+  //   new winston.transports.File({ filename: "logs/rejections.log" }),
+  // ],
   exitOnError: false,
 });
 
