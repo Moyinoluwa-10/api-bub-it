@@ -68,6 +68,5 @@ app.use(errorHandler);
 
 logger.info("App started");
 logger.error("App started");
-logger.silly("App started");
 
 module.exports = app;
