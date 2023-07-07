@@ -22,6 +22,27 @@ const options = {
     handleExceptions: true,
     format: combine(winston.format.splat(), winston.format.simple()),
   },
+  loggly: {
+    level: "debug",
+    inputToken: "3448bd64-ea55-4a26-a505-6a24cdae39b5",
+    subdomain: "devmo",
+    tags: ["bub-it"],
+    json: true,
+  },
+  logglyException: {
+    level: "debug",
+    inputToken: "3448bd64-ea55-4a26-a505-6a24cdae39b5",
+    subdomain: "devmo",
+    tags: ["bub-it", "exception-bub-it"],
+    json: true,
+  },
+  logglyRejection: {
+    level: "debug",
+    inputToken: "3448bd64-ea55-4a26-a505-6a24cdae39b5",
+    subdomain: "devmo",
+    tags: ["bub-it", "rejection-bub-it"],
+    json: true,
+  },
 };
 
 const logger = winston.createLogger({
@@ -30,24 +51,16 @@ const logger = winston.createLogger({
   format: combine(winston.format.colorize(), timestamp(), prettyPrint(), ms()),
   defaultMeta: { service: "user-service" },
   transports: [],
-  // exceptionHandlers: [
-  //   new winston.transports.File({ filename: "logs/exceptions.log" }),
-  // ],
-  // rejectionHandlers: [
-  //   new winston.transports.File({ filename: "logs/rejections.log" }),
-  // ],
   exitOnError: false,
 });
 
 if (process.env.NODE_ENV === "production") {
-  logger.add(
-    new winston.transports.Loggly({
-      level: "debug",
-      inputToken: "3448bd64-ea55-4a26-a505-6a24cdae39b5",
-      subdomain: "devmo",
-      tags: ["bub-it"],
-      json: true,
-    })
+  logger.add(new winston.transports.Loggly(options.loggly));
+  logger.exceptions.handle(
+    new winston.transports.Loggly(options.logglyException)
+  );
+  logger.rejections.handle(
+    new winston.transports.Loggly(options.logglyRejection)
   );
 }
 
@@ -55,6 +68,12 @@ if (process.env.NODE_ENV !== "production") {
   logger.add(new winston.transports.Console(options.console));
   logger.add(new winston.transports.File(options.error));
   logger.add(new winston.transports.File(options.info));
+  logger.exceptions.handle(
+    new winston.transports.File({ filename: "logs/exceptions.log" })
+  );
+  logger.rejections.handle(
+    new winston.transports.File({ filename: "logs/rejections.log" })
+  );
 }
 
 // querying winston
