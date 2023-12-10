@@ -9,6 +9,10 @@ const cookiesConfig = (lifetime) => {
     sameSite: "none",
   };
 
+  if (NODE_ENV === "production") {
+    cookieConfig.domain = ".bub.icu";
+  }
+
   return cookieConfig;
 };
 
